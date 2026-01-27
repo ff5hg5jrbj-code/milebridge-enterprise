@@ -3,14 +3,18 @@ import React from 'react'
 
 export function Navigation() {
   return (
-    <nav className="fixed top-0 w-full bg-white/90 backdrop-blur-sm z-50 border-b">
-      <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-        <div className="text-2xl font-bold text-blue-600">MileBridge</div>
-        <div className="hidden md:flex space-x-8">
-          <a href="#hero" className="text-gray-600 hover:text-blue-600 transition-colors">Home</a>
-          <a href="#about" className="text-gray-600 hover:text-blue-600 transition-colors">About</a>
-          <a href="#services" className="text-gray-600 hover:text-blue-600 transition-colors">Services</a>
-          <a href="#contact" className="text-gray-600 hover:text-blue-600 transition-colors">Contact</a>
+    <nav className="fixed top-0 w-full bg-white/95 backdrop-blur-sm z-50 border-b h-20 flex items-center shadow-sm">
+      <div className="max-w-7xl mx-auto px-4 w-full flex justify-between items-center">
+        {/* Replace /logo.png with your actual file in the public folder */}
+        <a href="#hero" className="flex items-center">
+          <img src="/logo.png" alt="MileBridge Logo" className="h-12 w-auto" />
+        </a>
+        
+        <div className="hidden md:flex space-x-8 items-center font-bold text-sm tracking-tight text-gray-700">
+          <a href="#about" className="hover:text-blue-600 uppercase">Who We Are</a>
+          <a href="#services" className="hover:text-blue-600 uppercase">Services</a>
+          <a href="#fleet" className="hover:text-blue-600 uppercase">Fleet</a>
+          <a href="#contact" className="bg-blue-600 text-white px-5 py-2 rounded hover:bg-blue-700 transition-colors uppercase">Get Quote</a>
         </div>
       </div>
     </nav>
