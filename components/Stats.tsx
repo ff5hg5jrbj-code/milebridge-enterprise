@@ -1,9 +1,9 @@
 export default function Stats() {
   const stats = [
-    { number: '500+', label: 'Active Clients' },
-    { number: '50K+', label: 'Deliveries Monthly' },
-    { number: '98%', label: 'On-Time Delivery Rate' },
-    { number: '24/7', label: 'Customer Support' }
+    { number: '99.8%', label: 'On-Time Delivery' },
+    { number: '150+', label: 'Cities Served' },
+    { number: '30+', label: 'Hubs & Warehouses' },
+    { number: '99.6%', label: 'Fleet Uptime' }
   ]
 
   return (
