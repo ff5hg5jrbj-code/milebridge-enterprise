@@ -1,13 +1,36 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
+/* Enable Smooth Scrolling for the whole site */
 html {
   scroll-behavior: smooth;
 }
 
+/* Custom CSS Variables for MileBridge Brand Colors */
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
+  --primary-blue: #2563eb;
+  --secondary-blue: #1d4ed8;
+}
+
+/* Base Body Styles */
+body {
+  color: rgb(var(--foreground-rgb));
+  background: white;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Utility to prevent horizontal overflow on mobile */
+main {
+  overflow-x: hidden;
+  width: 100%;
+}
+
+/* Ensure images and SVGs don't break layout */
+img, svg {
+  display: inline-block;
+  vertical-align: middle;
 }
