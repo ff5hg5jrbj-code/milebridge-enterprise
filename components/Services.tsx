@@ -1,6 +1,6 @@
-export default function Hero() {
+export default function Services() {
   return (
-    <section className="relative bg-gradient-to-r from-blue-900 via-blue-800 to-blue-900 text-white py-24">
+    <section id="services" className="relative bg-gradient-to-r from-blue-900 via-blue-800 to-blue-900 text-white py-24">
       <div className="absolute inset-0 bg-black opacity-40"></div>
       <div className="relative max-w-4xl mx-auto px-6 text-center z-10">
         <h1 className="text-6xl font-bold mb-4">
