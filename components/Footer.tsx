@@ -39,4 +39,44 @@ export default function Footer() {
 
         {/* Services */}
         <div>
-          <h4 className="text-lg font-bold mb-6 border-b border-
+          <h4 className="text-lg font-bold mb-6 border-b border-blue-600 w-fit pb-2">Our Services</h4>
+          <ul className="space-y-4 text-gray-400 text-sm">
+            <li>FTL / LTL Transport</li>
+            <li>E-Commerce Logistics</li>
+            <li>Mountain Route Specialist</li>
+            <li>Contract Fleet Services</li>
+            <li>Distribution Hub Operations</li>
+          </ul>
+        </div>
+
+        {/* Contact Info */}
+        <div>
+          <h4 className="text-lg font-bold mb-6 border-b border-blue-600 w-fit pb-2">Contact Us</h4>
+          <ul className="space-y-4 text-gray-400 text-sm">
+            <li className="flex items-start space-x-3">
+              <span className="text-blue-500">📍</span>
+              <span>Iqbalabad Mochwa, Nowgam,<br />Budgam, J&K - 190015</span>
+            </li>
+            <li className="flex items-center space-x-3">
+              <span className="text-blue-500">📞</span>
+              <span>+91 88998 29936</span>
+            </li>
+            <li className="flex items-center space-x-3">
+              <span className="text-blue-500">✉️</span>
+              <span>info@milebridge.in</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      {/* Bottom Bar */}
+      <div className="max-w-7xl mx-auto px-4 mt-8 flex flex-col md:flex-row justify-between items-center text-gray-500 text-xs tracking-wider">
+        <p>© {currentYear} MILEBRIDGE LOGISTICS PRIVATE LIMITED. ALL RIGHTS RESERVED.</p>
+        <div className="mt-4 md:mt-0 space-x-6">
+          <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
+          <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
+        </div>
+      </div>
+    </footer>
+  )
+}
