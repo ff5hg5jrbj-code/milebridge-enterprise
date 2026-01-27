@@ -1,20 +1,20 @@
 export default function Hero() {
   return (
-    <section className="bg-gradient-to-r from-slate-900 to-slate-700 text-white py-20 text-center">
-      <div className="max-w-4xl mx-auto px-6">
-        <h1 className="text-5xl font-bold mb-4">
-          Delivering Efficiency. Every Mile.
+    <div className="pt-24 pb-16 px-4 bg-gray-50">
+      <div className="max-w-7xl mx-auto text-center">
+        <h1 className="text-5xl font-extrabold text-gray-900 mb-6">
+          Logistics Simplified with MileBridge
         </h1>
-        <p className="text-cyan-400 text-2xl font-semibold mb-6">
-          Driving Your Logistics Forward for Over 15 Years
+        <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
+          Reliable delivery solutions across India. We bridge the gap between your business and your customers.
         </p>
-        <p className="text-lg mb-8 text-gray-200">
-          As a leading logistics provider within India, MileBridge has been committed to delivering reliable and efficient solutions, tailored to the unique needs of our clients, ensuring seamless operations from start to finish.
-        </p>
-        <button className="bg-cyan-500 hover:bg-cyan-600 text-slate-900 px-8 py-3 rounded-full font-bold transition">
-          Get Started Today
-        </button>
+        <a 
+          href="#services" 
+          className="bg-blue-600 text-white px-8 py-4 rounded-lg font-bold hover:bg-blue-700 transition-all inline-block"
+        >
+          Get Started
+        </a>
       </div>
-    </section>
+    </div>
   )
 }

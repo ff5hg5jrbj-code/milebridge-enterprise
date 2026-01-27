@@ -1,60 +1,17 @@
 'use client'
+import React from 'react'
 
-export default function Navigation() {
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId)
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth', block: 'start' })
-    }
-  }
-
+export function Navigation() {
   return (
-    <nav className="bg-white shadow-md sticky top-0 z-50">
-      <div className="max-w-7xl mx-auto px-6 py-3 flex justify-between items-center">
-        <div className="flex items-center">
-          <img 
-            src="/milebridge-logo.png" 
-            alt="MileBridge Logistics" 
-            style={{ height: '200px', width: 'auto' }} 
-          />
+    <nav className="fixed top-0 w-full bg-white/90 backdrop-blur-sm z-50 border-b">
+      <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+        <div className="text-2xl font-bold text-blue-600">MileBridge</div>
+        <div className="hidden md:flex space-x-8">
+          <a href="#hero" className="text-gray-600 hover:text-blue-600 transition-colors">Home</a>
+          <a href="#about" className="text-gray-600 hover:text-blue-600 transition-colors">About</a>
+          <a href="#services" className="text-gray-600 hover:text-blue-600 transition-colors">Services</a>
+          <a href="#contact" className="text-gray-600 hover:text-blue-600 transition-colors">Contact</a>
         </div>
-        <ul className="flex gap-8 max-md:hidden text-gray-700 font-medium">
-          <li>
-            <button 
-              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-              className="hover:text-red-600 transition cursor-pointer"
-            >
-              Home
-            </button>
-          </li>
-          <li>
-            <button 
-              onClick={() => scrollToSection('about')}
-              className="hover:text-red-600 transition cursor-pointer"
-            >
-              About
-            </button>
-          </li>
-          <li>
-            <button 
-              onClick={() => scrollToSection('services')}
-              className="hover:text-red-600 transition cursor-pointer"
-            >
-              Services
-            </button>
-          </li>
-          <li>
-            <button 
-              onClick={() => scrollToSection('contact')}
-              className="hover:text-red-600 transition cursor-pointer"
-            >
-              Contact
-            </button>
-          </li>
-        </ul>
-        <button className="bg-red-600 hover:bg-red-700 text-white px-6 py-2 rounded-lg font-semibold transition">
-          Get Quote
-        </button>
       </div>
     </nav>
   )
