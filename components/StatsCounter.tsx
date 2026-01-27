@@ -1,4 +1,4 @@
-export default function StatsCounter() {
+export function StatsCounter() {
   const stats = [
     { label: "On-Time Delivery", value: "99.8%" },
     { label: "Fleet Uptime", value: "99.6%" },

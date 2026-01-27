@@ -1,4 +1,4 @@
-export default function IndustriesServed() {
+export function IndustriesServed() {
   const industries = ["E-Commerce", "FMCG", "Pharmaceuticals", "Automotive", "Electronics", "Industrial B2B"];
   return (
     <section className="py-20 bg-gray-50">
