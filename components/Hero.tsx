@@ -1,22 +1,29 @@
-"use client"
-
 export default function Hero() {
   return (
-    <section className="py-20">
-      <div className="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 rounded-3xl p-12 max-w-4xl mx-auto border border-gray-700">
-        <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
-          MileBridge Logistics
-        </h1>
-        <p className="text-xl text-gray-300 mb-8 max-w-2xl">
-          Enterprise supply chain & delivery network across India
-        </p>
-        <div className="flex flex-col sm:flex-row gap-4">
-          <a href="#services" className="bg-blue-600 hover:bg-blue-700 px-8 py-3 rounded-full text-white font-semibold text-center">
-            View Services
-          </a>
-          <a href="#contact" className="border border-gray-600 hover:bg-gray-800 px-8 py-3 rounded-full text-gray-200 font-semibold text-center">
-            Talk to Our Team
-          </a>
+    <section className="relative h-screen flex items-center">
+      {/* Full hero image */}
+      <div className="absolute inset-0 bg-[url('/hero-truck.jpg')] bg-cover bg-center brightness-50"></div>
+      <div className="relative z-10 container mx-auto px-6 max-w-7xl">
+        <div className="grid lg:grid-cols-2 gap-12">
+          <div className="text-white max-w-lg">
+            <h1 className="text-5xl lg:text-7xl font-bold leading-tight mb-6">
+              Enterprise<br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-red-500">
+                Logistics
+              </span>
+            </h1>
+            <p className="text-xl mb-8 opacity-90">
+              Nationwide supply chain excellence with technology at core.
+            </p>
+            <div className="flex gap-4">
+              <a href="#services" className="bg-orange-500 text-white px-8 py-4 rounded-lg font-bold hover:bg-orange-600">
+                Our Services
+              </a>
+              <a href="#contact" className="border border-white px-8 py-4 rounded-lg font-semibold hover:bg-white/20">
+                Contact Us
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </section>
