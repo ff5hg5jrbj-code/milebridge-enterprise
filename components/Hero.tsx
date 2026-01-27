@@ -3,7 +3,7 @@ export default function Hero() {
     <section className="relative h-[80vh] flex items-center overflow-hidden">
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat brightness-75" 
-        style={{backgroundImage: "url('/hero-logistics.jpg')"}} 
+        style={{backgroundImage: "url('https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?q=80&w=2070')"
       />
       <div className="relative z-10 container mx-auto px-6">
         <div className="max-w-4xl">
