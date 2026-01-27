@@ -1,10 +1,13 @@
 import type { Metadata } from 'next'
+import { Inter } from 'next/font/google'
 import './globals.css'
+import GoogleAnalytics from './components/GoogleAnalytics'
 
-export const metadata: Metadata = {
-  title: 'MileBridge - Advanced Logistics & Delivery Solutions',
-  description: 'Leading integrated supply chain and mobility solutions provider in India. Real-time tracking, smart route optimization, and green logistics.',
-  keywords: 'logistics, delivery, supply chain, transportation, India',
+const inter = Inter({ subsets: ['latin'] })
+
+export const meta Metadata = {
+  title: 'MileBridge Logistics - Enterprise Supply Chain Solutions',
+  description: 'Professional logistics and delivery services across India',
 }
 
 export default function RootLayout({
@@ -14,7 +17,8 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="bg-white text-gray-900">
+      <body className={inter.className}>
+        <GoogleAnalytics />
         {children}
       </body>
     </html>
