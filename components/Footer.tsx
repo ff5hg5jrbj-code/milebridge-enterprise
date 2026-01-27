@@ -13,7 +13,7 @@ export default function Footer() {
           <img 
             src="/logo.png" 
             alt="MileBridge Logo" 
-            className="h-16 w-auto object-contain brightness-0 invert" 
+            className="h-[260px] w-auto object-contain brightness-0 invert" 
           />
           <p className="text-gray-400 text-sm leading-relaxed">
             Delivering Efficiency. Every Mile. <br />

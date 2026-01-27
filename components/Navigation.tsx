@@ -8,7 +8,7 @@ export function Navigation() {
         {/* Replace /logo.png with your actual file in the public folder */}
         <a href="#hero" className="flex items-center">
   {/* Increased height from h-12 to h-16 or h-20 */}
-  <img src="/logo.png" alt="MileBridge Logo" className="h-16 md:h-20 w-auto object-contain" />
+  <img src="/logo.png" alt="MileBridge Logo" className="h-60 md:h-64 w-auto object-contain" />
 </a>
         
         <div className="hidden md:flex space-x-8 items-center font-bold text-sm tracking-tight text-gray-700">
