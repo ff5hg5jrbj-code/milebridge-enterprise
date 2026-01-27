@@ -1,20 +1,19 @@
 export default function Stats() {
   const stats = [
-    { title: 'Technology-enabled operations', icon: '💻' },
-    { title: 'Transparent pricing & real-time updates', icon: '📊' },
-    { title: 'High operational discipline', icon: '⚡' },
-    { title: 'Strong leadership vision', icon: '🎯' }
+    { number: '500+', label: 'Active Clients' },
+    { number: '50K+', label: 'Deliveries Monthly' },
+    { number: '98%', label: 'On-Time Delivery Rate' },
+    { number: '24/7', label: 'Customer Support' }
   ]
 
   return (
-    <section id="why" className="py-20 bg-gray-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-4xl font-bold text-center mb-12 text-gray-900">Why MileBridge?</h2>
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {stats.map((item, index) => (
-            <div key={index} className="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-all duration-300">
-              <div className="text-5xl mb-4">{item.icon}</div>
-              <h3 className="text-lg font-semibold text-gray-900">{item.title}</h3>
+    <section className="bg-gradient-to-r from-slate-900 to-slate-700 text-white py-16">
+      <div className="max-w-6xl mx-auto px-6">
+        <div className="grid md:grid-cols-4 gap-8 text-center">
+          {stats.map((stat, idx) => (
+            <div key={idx}>
+              <h3 className="text-4xl font-bold text-cyan-400 mb-2">{stat.number}</h3>
+              <p className="text-gray-300">{stat.label}</p>
             </div>
           ))}
         </div>

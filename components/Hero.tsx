@@ -1,92 +1,19 @@
 export default function Hero() {
   return (
-    <section style={{ 
-      position: 'relative',
-      minHeight: '100vh',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center'
-    }}>
-      {/* Background Image */}
-      <div style={{
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0,
-        backgroundImage: 'url(https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=1920&q=80)',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        zIndex: 1
-      }}></div>
-      
-      {/* Darker overlay - just for readability */}
-      <div style={{
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0,
-        background: 'linear-gradient(135deg, rgba(0, 0, 0, 0.5) 0%, rgba(193, 18, 31, 0.4) 100%)',
-        zIndex: 2
-      }}></div>
-      
-      {/* Content */}
-      <div style={{ position: 'relative', zIndex: 3 }} className="text-center px-4 max-w-5xl">
-        <h1 style={{ 
-          fontSize: '4rem', 
-          fontWeight: '800', 
-          color: 'white', 
-          marginBottom: '1.5rem',
-          lineHeight: '1.1',
-          textShadow: '3px 3px 15px rgba(0,0,0,0.7)'
-        }}>
-          Connecting Journeys<br />Seamlessly
+    <section className="bg-gradient-to-r from-slate-900 to-slate-700 text-white py-20 text-center">
+      <div className="max-w-4xl mx-auto px-6">
+        <h1 className="text-5xl font-bold mb-4">
+          Connecting Miles, Delivering Success
         </h1>
-        
-        <p style={{ 
-          fontSize: '1.5rem', 
-          color: 'white', 
-          marginBottom: '2.5rem',
-          textShadow: '2px 2px 8px rgba(0,0,0,0.6)'
-        }}>
-          Enterprise-grade logistics delivering nationwide with precision, speed, and reliability
+        <p className="text-cyan-400 text-2xl font-semibold mb-6">
+          Advanced Logistics & Real-Time Delivery Solutions
         </p>
-        
-        <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
-          <a href="#services">
-            <button style={{ 
-              backgroundColor: '#C1121F', 
-              color: 'white', 
-              padding: '1rem 2.5rem', 
-              borderRadius: '0.5rem', 
-              fontWeight: '700', 
-              fontSize: '1.125rem',
-              border: 'none',
-              cursor: 'pointer',
-              boxShadow: '0 4px 16px rgba(0,0,0,0.3)',
-              transition: 'all 0.3s'
-            }}>
-              View Services
-            </button>
-          </a>
-          <a href="#about">
-            <button style={{ 
-              backgroundColor: 'white', 
-              border: 'none', 
-              color: '#C1121F', 
-              padding: '1rem 2.5rem', 
-              borderRadius: '0.5rem', 
-              fontWeight: '700', 
-              fontSize: '1.125rem',
-              cursor: 'pointer',
-              boxShadow: '0 4px 16px rgba(0,0,0,0.3)',
-              transition: 'all 0.3s'
-            }}>
-              Learn More About Us
-            </button>
-          </a>
-        </div>
+        <p className="text-lg mb-8 text-gray-200">
+          We seamlessly integrate smart, tech-enabled logistics solutions for your complex supply chain requirements. Our customer-first approach ensures reliability, transparency, and optimization across all operations.
+        </p>
+        <button className="bg-cyan-500 hover:bg-cyan-600 text-slate-900 px-8 py-3 rounded-full font-bold transition">
+          Get Started Today
+        </button>
       </div>
     </section>
   )

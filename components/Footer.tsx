@@ -1,44 +1,37 @@
-import Link from 'next/link'
-
 export default function Footer() {
   return (
-    <footer className="bg-gray-900 text-gray-300 py-12">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid md:grid-cols-4 gap-8 mb-8">
+    <footer className="bg-slate-900 text-white py-12">
+      <div className="max-w-6xl mx-auto px-6">
+        <div className="grid md:grid-cols-3 gap-8 mb-8">
           <div>
-            <h3 className="text-white text-xl font-bold mb-4">
-              Mile<span className="text-red-600">Bridge</span>
-            </h3>
-            <p className="text-gray-400 text-sm leading-relaxed">
-              Enterprise supply chain & delivery network across India
+            <h4 className="text-cyan-400 font-bold mb-3">About MileBridge</h4>
+            <p className="text-gray-300 text-sm leading-relaxed">
+              MileBridge Logistics Private Limited is a leading integrated supply chain and mobility solutions provider committed to transforming logistics through technology and customer-first approach.
             </p>
           </div>
           <div>
-            <h4 className="text-white font-semibold mb-4">Services</h4>
-            <ul className="space-y-2 text-sm">
-              <li><Link href="/services" className="hover:text-white transition">Last Mile Delivery</Link></li>
-              <li><Link href="/services" className="hover:text-white transition">Contract Logistics</Link></li>
-              <li><Link href="/services" className="hover:text-white transition">Express Delivery</Link></li>
-            </ul>
+            <h4 className="text-cyan-400 font-bold mb-3">Contact Us</h4>
+            <p className="text-gray-300 text-sm leading-relaxed">
+              <strong>General Inquiries:</strong><br/>
+              <a href="mailto:info@milebridge.in" className="hover:text-cyan-400">info@milebridge.in</a><br/><br/>
+              <strong>HR & Careers:</strong><br/>
+              <a href="mailto:hr@milebridge.in" className="hover:text-cyan-400">hr@milebridge.in</a>
+            </p>
           </div>
           <div>
-            <h4 className="text-white font-semibold mb-4">Company</h4>
-            <ul className="space-y-2 text-sm">
-              <li><Link href="/about" className="hover:text-white transition">About Us</Link></li>
-              <li><Link href="/contact" className="hover:text-white transition">Contact</Link></li>
-              <li><Link href="#" className="hover:text-white transition">Careers</Link></li>
-            </ul>
-          </div>
-          <div>
-            <h4 className="text-white font-semibold mb-4">Contact</h4>
-            <p className="text-gray-400 text-sm leading-relaxed">
-              Email: contact@milebridge.in<br />
-              New Delhi, India
+            <h4 className="text-cyan-400 font-bold mb-3">Company Details</h4>
+            <p className="text-gray-300 text-sm leading-relaxed">
+              <strong>CIN:</strong> U52240JK2025PTC016880<br/>
+              <strong>GST:</strong> 01AASCM8905F1ZE<br/>
+              <strong>PAN:</strong> AASCM8905F<br/>
+              <strong>TAN:</strong> AMRM17034D
             </p>
           </div>
         </div>
-        <div className="border-t border-gray-800 pt-8 text-center text-gray-500 text-sm">
-          <p>&copy; 2026 MileBridge Logistics Private Limited. All rights reserved.</p>
+        <div className="border-t border-gray-700 pt-8 text-center">
+          <p className="text-gray-400 mb-2">Â© 2025 MileBridge Logistics Private Limited. All rights reserved.</p>
+          <p className="text-gray-500 text-sm mb-3">ðŸ“ Iqbal Abad, Srinagar, Budgam, Jammu & Kashmir - 190015 | ðŸŒ www.milebridge.in</p>
+          <p className="text-gray-500 text-sm">Connecting Miles | Delivering Success</p>
         </div>
       </div>
     </footer>
