@@ -1,29 +1,91 @@
 export default function Hero() {
   return (
-    <section className="relative h-[80vh] flex items-center overflow-hidden">
-      <div 
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat brightness-75" 
-        style={{backgroundImage: "url('https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?q=80&w=2070')"
-      />
-      <div className="relative z-10 container mx-auto px-6">
-        <div className="max-w-4xl">
-          <h1 className="text-5xl lg:text-7xl font-black text-white leading-tight mb-6 drop-shadow-2xl">
-            Enterprise<br className="hidden lg:block" />
-            <span className="text-transparent bg-gradient-to-r from-orange-400 via-red-500 to-orange-600 bg-clip-text">
-              Logistics
-            </span>
-          </h1>
-          <p className="text-xl text-white/90 mb-8 drop-shadow-lg max-w-2xl">
-            Nationwide supply chain excellence with technology at core. Serving Jammu & Kashmir and beyond.
-          </p>
-          <div className="flex flex-wrap gap-4">
-            <a href="#services" className="bg-white text-gray-900 px-10 py-4 rounded-xl font-bold text-lg shadow-2xl hover:shadow-orange-500/25 hover:scale-105 transition-all">
-              Our Services
-            </a>
-            <a href="#contact" className="border-2 border-white px-10 py-4 rounded-xl font-bold text-white hover:bg-white hover:text-gray-900 transition-all">
-              Get Quote
-            </a>
-          </div>
+    <section style={{ 
+      position: 'relative',
+      minHeight: '100vh',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center'
+    }}>
+      {/* Background Image */}
+      <div style={{
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        backgroundImage: 'url(https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=1920&q=80)',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        zIndex: 1
+      }}></div>
+      
+      {/* Darker overlay - just for readability */}
+      <div style={{
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        background: 'linear-gradient(135deg, rgba(0, 0, 0, 0.5) 0%, rgba(193, 18, 31, 0.4) 100%)',
+        zIndex: 2
+      }}></div>
+      
+      {/* Content */}
+      <div style={{ position: 'relative', zIndex: 3 }} className="text-center px-4 max-w-5xl">
+        <h1 style={{ 
+          fontSize: '4rem', 
+          fontWeight: '800', 
+          color: 'white', 
+          marginBottom: '1.5rem',
+          lineHeight: '1.1',
+          textShadow: '3px 3px 15px rgba(0,0,0,0.7)'
+        }}>
+          Connecting Journeys<br />Seamlessly
+        </h1>
+        
+        <p style={{ 
+          fontSize: '1.5rem', 
+          color: 'white', 
+          marginBottom: '2.5rem',
+          textShadow: '2px 2px 8px rgba(0,0,0,0.6)'
+        }}>
+          Enterprise-grade logistics delivering nationwide with precision, speed, and reliability
+        </p>
+        
+        <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+          <a href="#services">
+            <button style={{ 
+              backgroundColor: '#C1121F', 
+              color: 'white', 
+              padding: '1rem 2.5rem', 
+              borderRadius: '0.5rem', 
+              fontWeight: '700', 
+              fontSize: '1.125rem',
+              border: 'none',
+              cursor: 'pointer',
+              boxShadow: '0 4px 16px rgba(0,0,0,0.3)',
+              transition: 'all 0.3s'
+            }}>
+              View Services
+            </button>
+          </a>
+          <a href="#about">
+            <button style={{ 
+              backgroundColor: 'white', 
+              border: 'none', 
+              color: '#C1121F', 
+              padding: '1rem 2.5rem', 
+              borderRadius: '0.5rem', 
+              fontWeight: '700', 
+              fontSize: '1.125rem',
+              cursor: 'pointer',
+              boxShadow: '0 4px 16px rgba(0,0,0,0.3)',
+              transition: 'all 0.3s'
+            }}>
+              Learn More About Us
+            </button>
+          </a>
         </div>
       </div>
     </section>

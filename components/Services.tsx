@@ -1,40 +1,42 @@
+import Link from 'next/link'
+
 export default function Services() {
+  const services = [
+    {
+      title: 'Last Mile Delivery',
+      description: 'Precision last-mile delivery across urban and rural PIN codes with real-time tracking and 98%+ on-time performance.',
+      icon: '🚚'
+    },
+    {
+      title: 'Contract Logistics',
+      description: 'End-to-end supply chain management with warehousing, inventory optimization, and distribution.',
+      icon: '📦'
+    },
+    {
+      title: 'Express Delivery',
+      description: 'Same-day and next-day delivery solutions for time-sensitive shipments across major cities.',
+      icon: '⚡'
+    }
+  ]
+
   return (
-    <section className="py-20 bg-gray-50">
-      <div className="container mx-auto px-6 max-w-7xl">
-        <div className="grid md:grid-cols-3 gap-8">
-          {/* Service 1 */}
-          <div className="group relative overflow-hidden rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-105">
-            <div className="h-64 bg-gradient-to-br from-blue-500 to-indigo-600"></div>
-            <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition"></div>
-            <div className="absolute bottom-6 left-6 right-6">
-              <h3 className="text-2xl font-bold text-white mb-2">Last Mile</h3>
-              <p className="text-white/90 mb-4">Precision delivery with 98%+ on-time across PIN codes</p>
-              <a href="#contact" className="text-orange-400 font-semibold hover:text-orange-300">Learn More →</a>
+    <section id="services" className="py-20 bg-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 className="text-4xl font-bold text-center mb-4 text-gray-900">Our Services</h2>
+        <p className="text-xl text-gray-600 text-center mb-12">
+          Enterprise-grade logistics solutions for every need
+        </p>
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {services.map((service, index) => (
+            <div key={index} className="bg-gray-50 p-8 rounded-lg hover:shadow-lg transition-all duration-300 border border-gray-200">
+              <div className="text-5xl mb-4">{service.icon}</div>
+              <h3 className="text-2xl font-bold mb-4 text-gray-900">{service.title}</h3>
+              <p className="text-gray-600 mb-6 leading-relaxed">{service.description}</p>
+              <Link href="/services" className="text-red-600 font-semibold hover:text-red-700 hover:underline inline-flex items-center">
+                Learn More <span className="ml-2">→</span>
+              </Link>
             </div>
-          </div>
-
-          {/* Service 2 */}
-          <div className="group relative overflow-hidden rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-105">
-            <div className="h-64 bg-gradient-to-br from-emerald-500 to-teal-600"></div>
-            <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition"></div>
-            <div className="absolute bottom-6 left-6 right-6">
-              <h3 className="text-2xl font-bold text-white mb-2">Warehousing</h3>
-              <p className="text-white/90 mb-4">Temperature-controlled with ERP integration</p>
-              <a href="#contact" className="text-orange-400 font-semibold hover:text-orange-300">Learn More →</a>
-            </div>
-          </div>
-
-          {/* Service 3 */}
-          <div className="group relative overflow-hidden rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-105">
-            <div className="h-64 bg-gradient-to-br from-orange-500 to-red-500"></div>
-            <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition"></div>
-            <div className="absolute bottom-6 left-6 right-6">
-              <h3 className="text-2xl font-bold text-white mb-2">Line Haul</h3>
-              <p className="text-white/90 mb-4">FTL/PTL across 120+ lanes</p>
-              <a href="#contact" className="text-orange-400 font-semibold hover:text-orange-300">Learn More →</a>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
     </section>

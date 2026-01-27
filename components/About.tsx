@@ -1,40 +1,45 @@
 export default function About() {
   return (
-    <section id="about" className="py-20 border-t border-gray-800">
-      <div className="max-w-4xl mx-auto text-center">
-        <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-          About MileBridge
-        </h2>
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          <div>
-            <p className="text-lg text-gray-300 mb-8">
-              MileBridge Logistics Private Limited is an enterprise logistics company delivering nationwide 
-              with a strong presence in challenging geographies. We combine disciplined ground operations 
-              with technology‑enabled visibility and service excellence.
-            </p>
-            <div className="space-y-4 text-left">
-              <div className="flex items-center gap-3">
-                <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                <span className="text-gray-400">120+ active lanes</span>
-              </div>
-              <div className="flex items-center gap-3">
-                <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                <span className="text-gray-400">10k+ serviceable PINs</span>
-              </div>
-              <div className="flex items-center gap-3">
-                <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                <span className="text-gray-400">98.5% on-time delivery</span>
-              </div>
+    <section id="about" className="py-20 bg-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-12">
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+            About MileBridge
+          </h2>
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            MileBridge Logistics Private Limited is an enterprise logistics company delivering nationwide with a strong presence in challenging geographies. We combine disciplined ground operations with technology-enabled visibility and service excellence.
+          </p>
+        </div>
+
+        <div className="mt-16">
+          <h3 className="text-3xl font-bold text-center mb-10 text-gray-900">
+            Why MileBridge?
+          </h3>
+          
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {/* Feature 1 */}
+            <div className="text-center p-6 rounded-lg hover:shadow-lg transition">
+              <div className="text-5xl mb-4">🖥️</div>
+              <h4 className="text-xl font-bold mb-3 text-gray-900">Technology-enabled operations</h4>
             </div>
-          </div>
-          <div className="bg-gradient-to-br from-blue-500/10 to-purple-500/10 border border-blue-500/30 rounded-3xl p-12">
-            <h3 className="text-2xl font-semibold text-white mb-6">Why MileBridge?</h3>
-            <ul className="space-y-3 text-gray-300">
-              <li>• Technology-enabled operations</li>
-              <li>• Transparent pricing & real-time updates</li>
-              <li>• High operational discipline</li>
-              <li>• Strong leadership vision</li>
-            </ul>
+
+            {/* Feature 2 */}
+            <div className="text-center p-6 rounded-lg hover:shadow-lg transition">
+              <div className="text-5xl mb-4">💰</div>
+              <h4 className="text-xl font-bold mb-3 text-gray-900">Transparent pricing & real-time updates</h4>
+            </div>
+
+            {/* Feature 3 */}
+            <div className="text-center p-6 rounded-lg hover:shadow-lg transition">
+              <div className="text-5xl mb-4">⚡</div>
+              <h4 className="text-xl font-bold mb-3 text-gray-900">High operational discipline</h4>
+            </div>
+
+            {/* Feature 4 */}
+            <div className="text-center p-6 rounded-lg hover:shadow-lg transition">
+              <div className="text-5xl mb-4">🎯</div>
+              <h4 className="text-xl font-bold mb-3 text-gray-900">Strong leadership vision</h4>
+            </div>
           </div>
         </div>
       </div>
