@@ -7,8 +7,9 @@ export function Navigation() {
       <div className="max-w-7xl mx-auto px-4 w-full flex justify-between items-center">
         {/* Replace /logo.png with your actual file in the public folder */}
         <a href="#hero" className="flex items-center">
-          <img src="/logo.png" alt="MileBridge Logo" className="h-12 w-auto" />
-        </a>
+  {/* Increased height from h-12 to h-16 or h-20 */}
+  <img src="/logo.png" alt="MileBridge Logo" className="h-16 md:h-20 w-auto object-contain" />
+</a>
         
         <div className="hidden md:flex space-x-8 items-center font-bold text-sm tracking-tight text-gray-700">
           <a href="#about" className="hover:text-blue-600 uppercase">Who We Are</a>

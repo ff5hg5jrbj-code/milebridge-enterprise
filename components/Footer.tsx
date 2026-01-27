@@ -1,43 +1,42 @@
+'use client'
+import React from 'react'
+
 export default function Footer() {
+  const currentYear = new Date().getFullYear();
+
   return (
-    <footer className="bg-slate-900 text-white py-12">
-      <div className="max-w-6xl mx-auto px-6">
-        <div className="grid md:grid-cols-3 gap-8 mb-8">
-          <div>
-            <img 
-              src="/milebridge-logo.png" 
-              alt="MileBridge Logo" 
-              className="h-64 w-auto mb-4 brightness-0 invert"
-            />
-            <p className="text-gray-300 text-sm leading-relaxed">
-              MileBridge Logistics Private Limited is a leading integrated supply chain and mobility solutions provider with over 15 years of experience.
-            </p>
-          </div>
-          <div>
-            <h4 className="text-cyan-400 font-bold mb-3">Contact Us</h4>
-            <p className="text-gray-300 text-sm leading-relaxed">
-              <strong>Email:</strong><br/>
-              <a href="mailto:info@milebridge.in" className="hover:text-cyan-400">info@milebridge.in</a><br/><br/>
-              <strong>Phone:</strong><br/>
-              <a href="tel:+918899829936" className="hover:text-cyan-400">+91 88998 2936</a>
-            </p>
-          </div>
-          <div>
-            <h4 className="text-cyan-400 font-bold mb-3">Company Details</h4>
-            <p className="text-gray-300 text-sm leading-relaxed">
-              <strong>CIN:</strong> U52240JK2025PTC016880<br/>
-              <strong>GST:</strong> 01AASCM8905F1ZE<br/>
-              <strong>PAN:</strong> AASCM8905F<br/>
-              <strong>TAN:</strong> AMRM17034D
-            </p>
+    <footer className="bg-gray-900 text-white pt-16 pb-8">
+      <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-12 border-b border-gray-800 pb-12">
+        
+        {/* Company Info */}
+        <div className="flex flex-col space-y-6">
+          <img 
+            src="/logo.png" 
+            alt="MileBridge Logo" 
+            className="h-16 w-auto object-contain brightness-0 invert" 
+          />
+          <p className="text-gray-400 text-sm leading-relaxed">
+            Delivering Efficiency. Every Mile. <br />
+            As a leading logistics provider within India, MileBridge has been driving logistics forward for over 15 years.
+          </p>
+          <div className="flex space-x-4 text-xs font-bold text-blue-400 uppercase tracking-widest">
+            <span>ISO 9001</span>
+            <span>ISO 14001</span>
+            <span>AEO Certified</span>
           </div>
         </div>
-        <div className="border-t border-gray-700 pt-8 text-center">
-          <p className="text-gray-400 mb-2">© 2025 MileBridge Logistics Private Limited. All rights reserved.</p>
-          <p className="text-gray-500 text-sm mb-3">📍 Iqbal Abad, Srinagar, Budgam, Jammu & Kashmir - 190015 | 🌐 www.milebridge.in</p>
-          <p className="text-gray-500 text-sm">Delivering Efficiency. Every Mile.</p>
+
+        {/* Quick Links */}
+        <div>
+          <h4 className="text-lg font-bold mb-6 border-b border-blue-600 w-fit pb-2">Quick Links</h4>
+          <ul className="space-y-4 text-gray-400 text-sm">
+            <li><a href="#hero" className="hover:text-white transition-colors">Home</a></li>
+            <li><a href="#about" className="hover:text-white transition-colors">Who We Are</a></li>
+            <li><a href="#fleet" className="hover:text-white transition-colors">Our Fleet</a></li>
+            <li><a href="#contact" className="hover:text-white transition-colors">Get a Quote</a></li>
+          </ul>
         </div>
-      </div>
-    </footer>
-  )
-}
+
+        {/* Services */}
+        <div>
+          <h4 className="text-lg font-bold mb-6 border-b border-
