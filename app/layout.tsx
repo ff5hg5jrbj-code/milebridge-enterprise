@@ -5,8 +5,8 @@ import GoogleAnalytics from './components/GoogleAnalytics'
 
 const inter = Inter({ subsets: ['latin'] })
 
-export const meta Metadata = {
-  title: 'MileBridge Logistics - Enterprise Supply Chain Solutions',
+export const metadata: Metadata = {
+  title: 'MileBridge - Your Trusted Logistics Partner',
   description: 'Professional logistics and delivery services across India',
 }
 
