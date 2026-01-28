@@ -1,6 +1,7 @@
 'use client'
 import React, { useState } from 'react'
 
+
 export function Navigation() {
   const [isServicesOpen, setIsServicesOpen] = useState(false)
   const [isIndustriesOpen, setIsIndustriesOpen] = useState(false)
@@ -10,6 +11,7 @@ export function Navigation() {
   const [servicesTimeout, setServicesTimeout] = useState<NodeJS.Timeout | null>(null)
   const [industriesTimeout, setIndustriesTimeout] = useState<NodeJS.Timeout | null>(null)
   const [companyTimeout, setCompanyTimeout] = useState<NodeJS.Timeout | null>(null)
+
 
   const handleMouseEnter = (dropdown: string) => {
     if (dropdown === 'services') {
@@ -24,6 +26,7 @@ export function Navigation() {
     }
   }
 
+
   const handleMouseLeave = (dropdown: string) => {
     if (dropdown === 'services') {
       const timeout = setTimeout(() => setIsServicesOpen(false), 300)
@@ -36,6 +39,7 @@ export function Navigation() {
       setCompanyTimeout(timeout)
     }
   }
+
 
   return (
     <nav className="fixed top-0 w-full bg-white/95 backdrop-blur-md z-50 border-b border-gray-100 shadow-sm">
@@ -126,7 +130,8 @@ export function Navigation() {
             )}
           </div>
 
-          {/* INDUSTRIES Dropdown */}
+
+          {/* INDUSTRIES Dropdown - UPDATED WITH ALL 6 */}
           <div 
             className="relative"
             onMouseEnter={() => handleMouseEnter('industries')}
@@ -141,8 +146,8 @@ export function Navigation() {
             
             {isIndustriesOpen && (
               <div className="absolute top-full left-0 mt-2 w-56 bg-white rounded-lg shadow-xl border border-gray-100 py-2">
-                <a href="/industries/automotive" className="block px-4 py-3 hover:bg-blue-50 hover:text-blue-600 transition-colors">
-                  <div className="font-semibold">Automotive</div>
+                <a href="/industries/ecommerce" className="block px-4 py-3 hover:bg-blue-50 hover:text-blue-600 transition-colors">
+                  <div className="font-semibold">E-Commerce</div>
                 </a>
                 <a href="/industries/fmcg" className="block px-4 py-3 hover:bg-blue-50 hover:text-blue-600 transition-colors">
                   <div className="font-semibold">FMCG</div>
@@ -150,14 +155,14 @@ export function Navigation() {
                 <a href="/industries/pharma" className="block px-4 py-3 hover:bg-blue-50 hover:text-blue-600 transition-colors">
                   <div className="font-semibold">Pharmaceuticals</div>
                 </a>
-                <a href="/industries/retail" className="block px-4 py-3 hover:bg-blue-50 hover:text-blue-600 transition-colors">
-                  <div className="font-semibold">Retail</div>
+                <a href="/industries/automotive" className="block px-4 py-3 hover:bg-blue-50 hover:text-blue-600 transition-colors">
+                  <div className="font-semibold">Automotive</div>
                 </a>
-                <a href="/industries/manufacturing" className="block px-4 py-3 hover:bg-blue-50 hover:text-blue-600 transition-colors">
-                  <div className="font-semibold">Manufacturing</div>
+                <a href="/industries/electronics" className="block px-4 py-3 hover:bg-blue-50 hover:text-blue-600 transition-colors">
+                  <div className="font-semibold">Electronics</div>
                 </a>
-                <a href="/industries/technology" className="block px-4 py-3 hover:bg-blue-50 hover:text-blue-600 transition-colors">
-                  <div className="font-semibold">Technology</div>
+                <a href="/industries/industrial-b2b" className="block px-4 py-3 hover:bg-blue-50 hover:text-blue-600 transition-colors">
+                  <div className="font-semibold">Industrial B2B</div>
                 </a>
               </div>
             )}
@@ -175,6 +180,7 @@ export function Navigation() {
             Get Quote
           </a>
         </div>
+
 
         {/* Mobile Contact Link */}
         <a href="/contact" className="md:hidden bg-blue-600 text-white p-2 rounded-full">
