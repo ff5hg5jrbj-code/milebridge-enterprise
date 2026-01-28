@@ -1,14 +1,13 @@
-import '../globals.css'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
-import { GoogleAnalytics } from '@next/third-parties/google'
-import WhatsAppWidget from '../components/WhatsAppWidget'
+import './globals.css'
+import { Navigation } from '@/components/Navigation'
 
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'MileBridge - Your Trusted Logistics Partner',
-  description: 'Professional logistics and delivery services across India',
+  title: 'MileBridge Logistics - Asset-Backed Logistics Partner',
+  description: 'SLA-driven FTL and e-commerce logistics with dedicated fleet and mountain-route expertise',
 }
 
 export default function RootLayout({
@@ -19,9 +18,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
+        <Navigation />
         {children}
-        <WhatsAppWidget />
-        <GoogleAnalytics gaId="G-2S0ZGZ42V2" />
       </body>
     </html>
   )
