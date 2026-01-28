@@ -1,17 +1,16 @@
 'use client'
 import React, { useState } from 'react'
 
-
 export function Navigation() {
   const [isServicesOpen, setIsServicesOpen] = useState(false)
   const [isIndustriesOpen, setIsIndustriesOpen] = useState(false)
   const [isCompanyOpen, setIsCompanyOpen] = useState(false)
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   
   // Timeout refs to manage delays
   const [servicesTimeout, setServicesTimeout] = useState<NodeJS.Timeout | null>(null)
   const [industriesTimeout, setIndustriesTimeout] = useState<NodeJS.Timeout | null>(null)
   const [companyTimeout, setCompanyTimeout] = useState<NodeJS.Timeout | null>(null)
-
 
   const handleMouseEnter = (dropdown: string) => {
     if (dropdown === 'services') {
@@ -26,7 +25,6 @@ export function Navigation() {
     }
   }
 
-
   const handleMouseLeave = (dropdown: string) => {
     if (dropdown === 'services') {
       const timeout = setTimeout(() => setIsServicesOpen(false), 300)
@@ -40,22 +38,21 @@ export function Navigation() {
     }
   }
 
-
   return (
     <nav className="fixed top-0 w-full bg-white/95 backdrop-blur-md z-50 border-b border-gray-100 shadow-sm">
-      <div className="max-w-7xl mx-auto px-4 w-full flex justify-between items-center h-28 md:h-32">
+      <div className="max-w-7xl mx-auto px-4 w-full flex justify-between items-center h-20 md:h-28 lg:h-32">
         
         {/* Large Brand Logo */}
         <a href="/" className="flex items-center transition-transform hover:scale-105">
           <img 
             src="/logo.png" 
             alt="MileBridge Logo" 
-            className="h-20 md:h-28 w-auto object-contain" 
+            className="h-14 md:h-20 lg:h-28 w-auto object-contain" 
           />
         </a>
         
-        {/* Navigation Menu */}
-        <div className="hidden md:flex space-x-8 items-center font-bold text-xs lg:text-sm tracking-tight text-gray-700">
+        {/* Desktop Navigation Menu */}
+        <div className="hidden md:flex space-x-4 lg:space-x-8 items-center font-bold text-xs lg:text-sm tracking-tight text-gray-700">
           
           {/* WHO WE ARE Dropdown */}
           <div 
@@ -130,8 +127,7 @@ export function Navigation() {
             )}
           </div>
 
-
-          {/* INDUSTRIES Dropdown - UPDATED WITH ALL 6 */}
+          {/* INDUSTRIES Dropdown */}
           <div 
             className="relative"
             onMouseEnter={() => handleMouseEnter('industries')}
@@ -175,20 +171,87 @@ export function Navigation() {
           {/* Action Button */}
           <a 
             href="/contact" 
-            className="bg-blue-600 text-white px-6 py-3 rounded-full hover:bg-blue-700 transition-all uppercase shadow-lg shadow-blue-100"
+            className="bg-blue-600 text-white px-4 lg:px-6 py-2 lg:py-3 rounded-full hover:bg-blue-700 transition-all uppercase shadow-lg shadow-blue-100"
           >
             Get Quote
           </a>
         </div>
 
-
-        {/* Mobile Contact Link */}
-        <a href="/contact" className="md:hidden bg-blue-600 text-white p-2 rounded-full">
-           <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-           </svg>
-        </a>
+        {/* Mobile Menu Button */}
+        <button 
+          className="md:hidden p-2"
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+        >
+          {isMobileMenuOpen ? (
+            // Close icon
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          ) : (
+            // Hamburger icon
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          )}
+        </button>
       </div>
+
+      {/* Mobile Menu Slide-out */}
+      {isMobileMenuOpen && (
+        <div className="md:hidden bg-white border-t border-gray-100 shadow-lg max-h-screen overflow-y-auto">
+          <div className="px-4 py-4 space-y-4">
+            
+            {/* Who We Are Section */}
+            <div>
+              <p className="font-bold text-gray-900 mb-2 uppercase text-sm">Who We Are</p>
+              <div className="pl-4 space-y-2">
+                <a href="/about" className="block py-2 text-gray-600 hover:text-blue-600">About Us</a>
+                <a href="/leadership" className="block py-2 text-gray-600 hover:text-blue-600">Leadership</a>
+                <a href="/careers" className="block py-2 text-gray-600 hover:text-blue-600">Careers</a>
+                <a href="/technology" className="block py-2 text-gray-600 hover:text-blue-600">Technology</a>
+                <a href="/sustainability" className="block py-2 text-gray-600 hover:text-blue-600">Sustainability</a>
+              </div>
+            </div>
+
+            {/* Services Section */}
+            <div>
+              <a href="/services" className="font-bold text-gray-900 mb-2 uppercase text-sm block">Services</a>
+              <div className="pl-4 space-y-2">
+                <a href="/services/ftl" className="block py-2 text-gray-600 hover:text-blue-600">Full Truckload (FTL)</a>
+                <a href="/services/ltl" className="block py-2 text-gray-600 hover:text-blue-600">Less Than Truckload (LTL)</a>
+                <a href="/services/ecommerce" className="block py-2 text-gray-600 hover:text-blue-600">E-commerce Logistics</a>
+                <a href="/services/specialized" className="block py-2 text-gray-600 hover:text-blue-600">Specialized Transport</a>
+                <a href="/services/mountain-routes" className="block py-2 text-gray-600 hover:text-blue-600">Mountain Route Expertise</a>
+              </div>
+            </div>
+
+            {/* Industries Section */}
+            <div>
+              <a href="/industries" className="font-bold text-gray-900 mb-2 uppercase text-sm block">Industries</a>
+              <div className="pl-4 space-y-2">
+                <a href="/industries/ecommerce" className="block py-2 text-gray-600 hover:text-blue-600">E-Commerce</a>
+                <a href="/industries/fmcg" className="block py-2 text-gray-600 hover:text-blue-600">FMCG</a>
+                <a href="/industries/pharma" className="block py-2 text-gray-600 hover:text-blue-600">Pharmaceuticals</a>
+                <a href="/industries/automotive" className="block py-2 text-gray-600 hover:text-blue-600">Automotive</a>
+                <a href="/industries/electronics" className="block py-2 text-gray-600 hover:text-blue-600">Electronics</a>
+                <a href="/industries/industrial-b2b" className="block py-2 text-gray-600 hover:text-blue-600">Industrial B2B</a>
+              </div>
+            </div>
+
+            {/* Direct Links */}
+            <a href="/fleet" className="block py-2 font-bold text-gray-900 uppercase text-sm">Our Fleet</a>
+            <a href="/mountain-specialist" className="block py-2 font-bold text-blue-700 uppercase text-sm">Mountain Specialist</a>
+            
+            {/* CTA Button */}
+            <a 
+              href="/contact" 
+              className="block bg-blue-600 text-white px-6 py-3 rounded-full hover:bg-blue-700 transition-all uppercase font-bold text-sm text-center shadow-lg mt-4"
+            >
+              Get Quote
+            </a>
+          </div>
+        </div>
+      )}
     </nav>
   )
 }
