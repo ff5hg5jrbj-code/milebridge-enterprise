@@ -1,86 +1,92 @@
-import { company, values, milestones, culture } from '@/lib/team';
-
 export default function About() {
   return (
-    <>
-      {/* Hero Section */}
-      <section className="py-20 bg-gradient-to-br from-blue-900 to-blue-800 text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">{company.tagline}</h1>
-          <p className="text-xl max-w-3xl mx-auto">
-            MileBridge Logistics Private Limited is an enterprise logistics company delivering nationwide with a strong presence in challenging geographies.
-          </p>
-        </div>
-      </section>
-
-      {/* Mission & Vision */}
-      <section className="py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 gap-12">
-            <div>
-              <h3 className="text-2xl font-bold mb-4 text-gray-900">Our Mission</h3>
-              <p className="text-gray-600">{company.mission}</p>
+    <section id="about" className="relative py-24 bg-gradient-to-b from-white to-blue-50">
+      <div className="max-w-7xl mx-auto px-4">
+        <div className="grid md:grid-cols-2 gap-12 items-center">
+          
+          {/* Left: Content */}
+          <div className="space-y-6">
+            <div className="inline-block px-4 py-2 bg-blue-100 text-blue-700 rounded-full text-sm font-bold uppercase tracking-wide">
+              About MileBridge
             </div>
-            <div>
-              <h3 className="text-2xl font-bold mb-4 text-gray-900">Our Vision</h3>
-              <p className="text-gray-600">{company.vision}</p>
-            </div>
-          </div>
-        </div>
-      </section>
+            
+            <h2 className="text-4xl md:text-5xl font-black text-gray-900 leading-tight">
+              Bridging Every Mile with{' '}
+              <span className="text-blue-600">Excellence</span>
+            </h2>
+            
+            <p className="text-lg text-gray-600 leading-relaxed">
+              MileBridge Logistics Private Limited is an enterprise logistics company delivering 
+              nationwide with a strong presence in challenging geographies.
+            </p>
 
-      {/* Core Values */}
-      <section className="py-16 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-center mb-12 text-gray-900">Our Core Values</h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {values.map((value, index) => (
-              <div key={index} className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition">
-                <div className="text-4xl mb-4">{value.icon}</div>
-                <h4 className="text-xl font-bold mb-3 text-gray-900">{value.title}</h4>
-                <p className="text-gray-600">{value.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Timeline/Milestones */}
-      <section className="py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-center mb-12 text-gray-900">Our Journey</h2>
-          <div className="space-y-8">
-            {milestones.map((milestone, index) => (
-              <div key={index} className="flex gap-6">
-                <div className="flex-shrink-0">
-                  <div className="w-16 h-16 bg-red-600 text-white rounded-full flex items-center justify-center font-bold">
-                    {milestone.year}
-                  </div>
+            <div className="space-y-4 pt-4">
+              <div className="flex items-start gap-4">
+                <div className="flex-shrink-0 w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center">
+                  <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
+                  </svg>
                 </div>
                 <div>
-                  <h4 className="text-xl font-bold text-gray-900 mb-2">{milestone.title}</h4>
-                  <p className="text-gray-600">{milestone.description}</p>
+                  <h3 className="font-bold text-gray-900 mb-1">Nationwide Reach</h3>
+                  <p className="text-gray-600 text-sm">Comprehensive coverage across India's diverse terrain</p>
                 </div>
               </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
-      {/* Culture Section */}
-      <section className="py-16 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold mb-6 text-gray-900">{culture.title}</h2>
-          <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">{culture.description}</p>
-          <div className="flex flex-wrap justify-center gap-4">
-            {culture.highlights.map((highlight, index) => (
-              <span key={index} className="bg-red-600 text-white px-6 py-2 rounded-full">
-                {highlight}
-              </span>
-            ))}
+              <div className="flex items-start gap-4">
+                <div className="flex-shrink-0 w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center">
+                  <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 className="font-bold text-gray-900 mb-1">Mountain Expertise</h3>
+                  <p className="text-gray-600 text-sm">Specialized in challenging high-altitude routes</p>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-4">
+                <div className="flex-shrink-0 w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center">
+                  <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 className="font-bold text-gray-900 mb-1">Asset-Backed Fleet</h3>
+                  <p className="text-gray-600 text-sm">Owned fleet ensuring reliability and control</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Right: Visual Element */}
+          <div className="relative">
+            <div className="relative rounded-3xl overflow-hidden shadow-2xl">
+              <img 
+                src="/images/hero-logistics.jpg" 
+                alt="MileBridge Operations" 
+                className="w-full h-96 object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-blue-900/50 to-transparent"></div>
+            </div>
+            
+            {/* Floating Card */}
+            <div className="absolute -bottom-6 -left-6 bg-white rounded-2xl shadow-xl p-6 max-w-xs">
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 bg-blue-600 rounded-xl flex items-center justify-center">
+                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" />
+                  </svg>
+                </div>
+                <div>
+                  <div className="text-2xl font-black text-gray-900">500+</div>
+                  <div className="text-xs text-gray-600 font-semibold">Active Clients</div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-      </section>
-    </>
-  );
+      </div>
+    </section>
+  )
 }
