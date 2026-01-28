@@ -75,15 +75,15 @@ function StatCard({ stat }: { stat: StatData }) {
       {/* Glow Effect */}
       <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
       
-      {/* Card */}
-      <div className="relative bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 hover:border-white/40 transition-all duration-300">
+      {/* Card - FIXED: Solid background instead of transparent for Firefox */}
+      <div className="relative bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl p-6 border border-slate-700 hover:border-blue-500 transition-all duration-300 shadow-xl">
         
-        {/* Top: Number */}
+        {/* Top: Number - FIXED: Better text contrast */}
         <div className="mb-4">
-          <div className="text-5xl md:text-6xl font-bold text-white mb-2">
+          <div className="text-5xl md:text-6xl font-bold text-white mb-2" style={{ textShadow: '0 2px 10px rgba(0,0,0,0.5)' }}>
             {stat.value}
           </div>
-          <div className="text-blue-200 text-xs md:text-sm font-semibold tracking-wider uppercase">
+          <div className="text-blue-300 text-xs md:text-sm font-semibold tracking-wider uppercase">
             {stat.label}
           </div>
         </div>
