@@ -64,3 +64,47 @@ img, svg {
     text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8) !important;
   }
 }
+/* Mobile Scroll Performance */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Prevent horizontal scroll on mobile */
+body {
+  overflow-x: hidden;
+}
+
+/* Better touch targets for mobile */
+@media (max-width: 768px) {
+  a, button {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Improve readability on small screens */
+  body {
+    font-size: 16px;
+    line-height: 1.6;
+  }
+  
+  /* Prevent zoom on input focus (iOS) */
+  input, textarea, select {
+    font-size: 16px;
+  }
+}
+
+/* Smooth animations on mobile */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+

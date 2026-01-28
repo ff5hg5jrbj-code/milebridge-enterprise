@@ -122,6 +122,9 @@ export default function Navigation() {
             <Link href="/about" className="text-gray-700 hover:text-red-600 font-medium">
               About
             </Link>
+            <Link href="/technology" className="text-gray-700 hover:text-red-600 font-medium">
+              Technology
+            </Link>
             <Link href="/careers" className="text-gray-700 hover:text-red-600 font-medium">
               Careers
             </Link>
@@ -223,6 +226,13 @@ export default function Navigation() {
               onClick={() => setMobileMenuOpen(false)}
             >
               About
+            </Link>
+            <Link
+              href="/technology"
+              className="block px-4 py-2 text-gray-700 hover:bg-red-50"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Technology
             </Link>
             <Link
               href="/careers"
