@@ -1,6 +1,7 @@
 'use client'
 import React from 'react'
 
+
 export function Navigation() {
   return (
     <nav className="fixed top-0 w-full bg-white/95 backdrop-blur-md z-50 border-b border-gray-100 shadow-sm">
@@ -18,7 +19,7 @@ export function Navigation() {
         {/* Navigation Menu */}
         <div className="hidden md:flex space-x-8 items-center font-bold text-xs lg:text-sm tracking-tight text-gray-700">
           <a href="#about" className="hover:text-blue-600 uppercase transition-colors">Who We Are</a>
-          <a href="#services" className="hover:text-blue-600 uppercase transition-colors">Services</a>
+          <a href="/services" className="hover:text-blue-600 uppercase transition-colors">Services</a>
           <a href="#fleet" className="hover:text-blue-600 uppercase transition-colors">Our Fleet</a>
           <a href="#mountain-routes" className="hover:text-blue-600 uppercase transition-colors text-blue-700">Mountain Specialist</a>
           
@@ -30,6 +31,7 @@ export function Navigation() {
             Get Quote
           </a>
         </div>
+
 
         {/* Mobile Contact Link (Visible only on small screens) */}
         <a href="#contact" className="md:hidden bg-blue-600 text-white p-2 rounded-full">
