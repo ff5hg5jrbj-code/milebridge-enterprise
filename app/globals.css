@@ -34,3 +34,33 @@ img, svg {
   display: inline-block;
   vertical-align: middle;
 }
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Your existing styles... */
+
+/* ============================================ */
+/* FIREFOX MOBILE COMPATIBILITY FIXES */
+/* ============================================ */
+
+/* Remove backdrop filters in Firefox */
+@supports (-moz-appearance:none) {
+  .backdrop-blur-sm,
+  .backdrop-blur-md,
+  .backdrop-blur-lg,
+  .backdrop-blur-xl {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+  
+  /* Replace transparent backgrounds with solid ones */
+  [class*="bg-white/"] {
+    background: rgba(30, 41, 59, 0.95) !important;
+  }
+  
+  /* Ensure all white text is visible */
+  .text-white {
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8) !important;
+  }
+}
