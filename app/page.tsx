@@ -4,11 +4,11 @@ import About from '../components/About'
 import Services from '../components/Services'
 import { FleetOverview } from '../components/FleetOverview'
 import { MountainLogistics } from '../components/MountainLogistics'
-import { IndustriesServed } from '../components/IndustriesServed'
 import Contact from '../components/Contact'
 import Footer from '../components/Footer'
 import WhatsAppWidget from '../components/WhatsAppWidget'
 import { StatsCounter } from '../components/StatsCounter'
+
 
 export default function Home() {
   return (
@@ -40,9 +40,6 @@ export default function Home() {
       <section id="mountain-routes" className="scroll-mt-32">
         <MountainLogistics />
       </section>
-      
-      {/* 7. Industry Focus */}
-      <IndustriesServed />
       
       {/* 8. Functional Contact Form */}
       <section id="contact" className="scroll-mt-32">
