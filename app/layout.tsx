@@ -1,26 +1,30 @@
-import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
-import './globals.css'
-import { Navigation } from '@/components/Navigation'
+import type { Metadata } from 'next';
+import { Inter } from 'next/font/google';
+import './globals.css';
+import TopBar from '@/components/TopBar';
+import Navigation from '@/components/Navigation';
+import Footer from '@/components/Footer';
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'MileBridge Logistics - Asset-Backed Logistics Partner',
-  description: 'SLA-driven FTL and e-commerce logistics with dedicated fleet and mountain-route expertise',
-}
+  title: 'MileBridge Logistics',
+  description: 'Professional logistics and delivery services across India',
+};
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   return (
     <html lang="en">
       <body className={inter.className}>
+        <TopBar />
         <Navigation />
         {children}
+        <Footer />
       </body>
     </html>
-  )
+  );
 }

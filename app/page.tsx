@@ -1,19 +1,16 @@
-import { Navigation } from '../components/Navigation'
 import Hero from '../components/Hero'
 import About from '../components/About'
 import Services from '../components/Services'
 import { FleetOverview } from '../components/FleetOverview'
 import { MountainLogistics } from '../components/MountainLogistics'
 import Contact from '../components/Contact'
-import Footer from '../components/Footer'
 import WhatsAppWidget from '../components/WhatsAppWidget'
 import { StatsCounter } from '../components/StatsCounter'
-
 
 export default function Home() {
   return (
     <main className="min-h-screen font-sans antialiased text-gray-900 bg-white">
-      <Navigation />
+      {/* Navigation is in layout.tsx - don't include here */}
       
       {/* 1. Impactful Branded Hero */}
       <Hero />
@@ -46,7 +43,6 @@ export default function Home() {
         <Contact />
       </section>
       
-      <Footer />
       <WhatsAppWidget />
     </main>
   )
