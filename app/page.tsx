@@ -13,7 +13,6 @@ const RouteCalculator = dynamic(() => import('@/components/RouteCalculator'), {
   loading: () => <div className="h-96 bg-gradient-to-br from-indigo-900 to-purple-900 animate-pulse rounded-xl" />
 })
 
-
 export default function Home() {
   return (
     <div className="min-h-screen">
@@ -32,8 +31,9 @@ export default function Home() {
                   Efficiency.<br />
                   Every Mile.
                 </h1>
+                {/* FIX #1: Updated to "SLA-based 3PL" */}
                 <p className="text-lg text-blue-100 mb-8 max-w-lg" style={{textShadow: '0 2px 4px rgba(0,0,0,0.3)'}}>
-                  MileBridge Logistics is a SLA based PL and E-Commerce Logistics Company with a dedicated infrastructure tailored for smooth operation
+                  MileBridge Logistics is a SLA-based 3PL and E-Commerce Logistics Company with dedicated infrastructure tailored for smooth operations across India's most challenging terrains.
                 </p>
                 <div className="flex flex-wrap gap-4">
                   <Link
@@ -53,11 +53,14 @@ export default function Home() {
             </FadeIn>
 
             {/* Right - Hero Image */}
+            {/* FIX #4: Added TODO comment for image replacement */}
             <SlideInRight>
               <div className="relative h-80 rounded-xl shadow-2xl overflow-hidden">
+                {/* TODO: Replace with real MileBridge truck on mountain road */}
+                {/* Needed: Photo of branded MileBridge vehicle in J&K terrain */}
                 <Image
                   src="/images/hero-logistics.jpg"
-                  alt="MileBridge Logistics Fleet"
+                  alt="MileBridge Logistics Fleet delivering across challenging mountain terrains"
                   fill
                   className="object-cover"
                   priority
@@ -73,6 +76,7 @@ export default function Home() {
       <StatsCounter />
 
       {/* Live Operations Dashboard */}
+      {/* FIX #2: Demo label will be added in LiveOperations component */}
       <LiveOperations />
 
       {/* Why Choose Us */}
@@ -90,14 +94,14 @@ export default function Home() {
                   <span className="text-blue-600">Excellence</span>
                 </h2>
                 <p className="text-gray-600 mb-8 text-lg leading-relaxed">
-                  MileBridge Logistics Private Limited is a pioneering logistics company specializing in express freight, last-mile delivery, and mountain terrain logistics across India.
+                  MileBridge Logistics Private Limited is a pioneering 3PL company specializing in express freight, last-mile delivery, and mountain terrain logistics across India.
                 </p>
 
                 {/* Features List */}
                 <div className="space-y-4">
                   <FadeIn delay={0.2}>
                     <div className="flex items-start gap-3">
-                      <div className="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                      <div className="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1" aria-hidden="true">
                         <svg className="w-4 h-4 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
                           <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                         </svg>
@@ -111,7 +115,7 @@ export default function Home() {
 
                   <FadeIn delay={0.3}>
                     <div className="flex items-start gap-3">
-                      <div className="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                      <div className="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1" aria-hidden="true">
                         <svg className="w-4 h-4 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
                           <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                         </svg>
@@ -125,7 +129,7 @@ export default function Home() {
 
                   <FadeIn delay={0.4}>
                     <div className="flex items-start gap-3">
-                      <div className="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                      <div className="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1" aria-hidden="true">
                         <svg className="w-4 h-4 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
                           <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                         </svg>
@@ -141,11 +145,14 @@ export default function Home() {
             </SlideInLeft>
 
             {/* Right - Mountain Image with 500+ Badge */}
+            {/* FIX #4: Added TODO comment for image replacement */}
             <SlideInRight>
               <div className="relative h-96 rounded-xl shadow-lg overflow-hidden">
+                {/* TODO: Replace with real mountain terrain delivery photo */}
+                {/* Needed: MileBridge vehicle on J&K mountain route */}
                 <Image
                   src="/images/mountain-route.jpg"
-                  alt="Mountain Terrain Logistics"
+                  alt="MileBridge Logistics delivering across mountain terrain in Jammu & Kashmir"
                   fill
                   className="object-cover"
                   loading="lazy"
@@ -153,7 +160,7 @@ export default function Home() {
                 />
                 {/* 500+ Active Clients Badge */}
                 <div className="absolute bottom-6 left-6 bg-white rounded-xl shadow-xl p-4 flex items-center gap-3">
-                  <div className="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center">
+                  <div className="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center" aria-hidden="true">
                     <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
                       <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z"/>
                     </svg>
@@ -189,7 +196,7 @@ export default function Home() {
           <div className="grid md:grid-cols-3 gap-8">
             <ScaleIn delay={0.1}>
               <div className="bg-gray-800 rounded-xl p-8 border border-gray-700 hover:border-blue-500 transition">
-                <div className="w-14 h-14 bg-blue-600 rounded-xl flex items-center justify-center mb-6">
+                <div className="w-14 h-14 bg-blue-600 rounded-xl flex items-center justify-center mb-6" aria-hidden="true">
                   <svg className="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd"/>
                   </svg>
@@ -206,7 +213,7 @@ export default function Home() {
 
             <ScaleIn delay={0.2}>
               <div className="bg-gray-800 rounded-xl p-8 border border-gray-700 hover:border-purple-500 transition">
-                <div className="w-14 h-14 bg-purple-600 rounded-xl flex items-center justify-center mb-6">
+                <div className="w-14 h-14 bg-purple-600 rounded-xl flex items-center justify-center mb-6" aria-hidden="true">
                   <svg className="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clipRule="evenodd"/>
                   </svg>
@@ -223,7 +230,7 @@ export default function Home() {
 
             <ScaleIn delay={0.3}>
               <div className="bg-gray-800 rounded-xl p-8 border border-gray-700 hover:border-green-500 transition">
-                <div className="w-14 h-14 bg-green-600 rounded-xl flex items-center justify-center mb-6">
+                <div className="w-14 h-14 bg-green-600 rounded-xl flex items-center justify-center mb-6" aria-hidden="true">
                   <svg className="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 20 20">
                     <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
                     <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
@@ -272,6 +279,7 @@ export default function Home() {
           </FadeIn>
 
           {/* Service Cards */}
+          {/* FIX #4: Added TODO comments for service images */}
           <div className="grid md:grid-cols-3 gap-8">
             {[
               {
@@ -279,6 +287,7 @@ export default function Home() {
                 category: "FREIGHT SERVICE",
                 description: "Complete truck capacity for large shipments with dedicated vehicles and direct delivery across India.",
                 image: "/images/services-ftl.jpg",
+                imageTodo: "Real MileBridge FTL truck with full load",
                 link: "/services/express-freight"
               },
               {
@@ -286,6 +295,7 @@ export default function Home() {
                 category: "LAST-MILE",
                 description: "Specialized last-mile delivery for e-commerce businesses with 99.8% on-time delivery rate.",
                 image: "/images/services-ecom.jpg",
+                imageTodo: "MileBridge delivery person with package/scanner",
                 link: "/services/last-mile"
               },
               {
@@ -293,6 +303,7 @@ export default function Home() {
                 category: "CONTRACT LOGISTICS",
                 description: "Dedicated fleet management and warehousing solutions for long-term partnerships.",
                 image: "/images/services-contract.jpg",
+                imageTodo: "MileBridge warehouse or multiple vehicles",
                 link: "/services/contract-logistics"
               }
             ].map((service, index) => (
@@ -302,9 +313,11 @@ export default function Home() {
                   className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 group"
                 >
                   <div className="relative h-48">
+                    {/* TODO: Replace service images with real photos */}
+                    {/* Needed: {service.imageTodo} */}
                     <Image
                       src={service.image}
-                      alt={service.title}
+                      alt={`${service.title} - MileBridge Logistics ${service.category}`}
                       fill
                       className="object-cover"
                       loading="lazy"
@@ -347,7 +360,7 @@ export default function Home() {
                   href="/contact"
                   className="inline-flex items-center gap-2 bg-white text-blue-900 px-8 py-3 rounded-lg font-semibold hover:bg-blue-50 transition shadow-lg"
                 >
-                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
                     <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
                     <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
                   </svg>
