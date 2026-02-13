@@ -1,10 +1,17 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import Script from 'next/script'
 import './globals.css'
 import Navigation from '@/components/Navigation'
 import Footer from '@/components/Footer'
 
-const inter = Inter({ subsets: ['latin'] })
+const tawkPropertyId = process.env.NEXT_PUBLIC_TAWK_ID
+const googleVerification = process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION
+const yandexVerification = process.env.NEXT_PUBLIC_YANDEX_VERIFICATION
+
+const verification = {
+  ...(googleVerification ? { google: googleVerification } : {}),
+  ...(yandexVerification ? { yandex: yandexVerification } : {}),
+}
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.milebridge.in'),
@@ -12,10 +19,8 @@ export const metadata: Metadata = {
     default: 'MileBridge Logistics - SLA-based 3PL & E-Commerce Logistics Company',
     template: '%s | MileBridge Logistics'
   },
-  // FIX #1 & #3: Updated description with "SLA-based 3PL" + expanded keywords
-  description: 'MileBridge Logistics is a SLA-based 3PL and E-Commerce Logistics Company with 99.8% on-time delivery. Specializing in mountain terrain logistics, last-mile delivery, express freight, and contract logistics across India.',
-  
-  // FIX #3: Expanded SEO keywords for better ranking
+  description: 'MileBridge Logistics is an SLA-based 3PL and e-commerce logistics company with 99.8% on-time delivery. We specialize in mountain terrain logistics, last-mile delivery, express freight, and contract logistics across India.',
+
   keywords: [
     'logistics company India',
     'mountain terrain logistics',
@@ -82,11 +87,8 @@ export const metadata: Metadata = {
       'max-snippet': -1
     }
   },
-  
-  verification: {
-    google: 'your-google-site-verification-code',
-    yandex: 'your-yandex-verification-code'
-  }
+
+  ...(Object.keys(verification).length > 0 ? { verification } : {}),
 }
 
 export default function RootLayout({
@@ -103,53 +105,47 @@ export default function RootLayout({
         <link rel="manifest" href="/manifest.json" />
       </head>
       
-      <body className={inter.className}>
-        {/* FIX #5: Added skip-to-content link for accessibility */}
+      <body className="antialiased">
         <a 
           href="#main-content" 
-          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold shadow-lg hover:bg-blue-700 transition"
+          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 bg-red-600 text-white px-6 py-3 rounded-lg font-semibold shadow-lg hover:bg-red-700 transition"
         >
           Skip to main content
         </a>
         
         <Navigation />
         
-        {/* FIX #5: Added id for skip-to-content functionality */}
         <main id="main-content">
           {children}
         </main>
         
         <Footer />
         
-        {/* Tawk.to Live Chat */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
+        {tawkPropertyId ? (
+          <Script id="tawk-chat" strategy="afterInteractive">
+            {`
               var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
               (function(){
                 var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
                 s1.async=true;
-                s1.src='https://embed.tawk.to/YOUR_TAWK_ID/default';
+                s1.src='https://embed.tawk.to/${tawkPropertyId}/default';
                 s1.charset='UTF-8';
                 s1.setAttribute('crossorigin','*');
                 s0.parentNode.insertBefore(s1,s0);
               })();
-            `
-          }}
-        />
-        
-        {/* Service Worker Registration */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              if ('serviceWorker' in navigator) {
-                window.addEventListener('load', function() {
-                  navigator.serviceWorker.register('/sw.js');
-                });
-              }
-            `
-          }}
-        />
+            `}
+          </Script>
+        ) : null}
+
+        <Script id="service-worker-registration" strategy="afterInteractive">
+          {`
+            if ('serviceWorker' in navigator) {
+              window.addEventListener('load', function() {
+                navigator.serviceWorker.register('/sw.js');
+              });
+            }
+          `}
+        </Script>
       </body>
     </html>
   )

@@ -1,6 +1,10 @@
 import type { NextConfig } from 'next'
 
 const nextConfig: NextConfig = {
+  turbopack: {
+    root: process.cwd(),
+  },
+
   // Image optimization
   images: {
     formats: ['image/avif', 'image/webp'],

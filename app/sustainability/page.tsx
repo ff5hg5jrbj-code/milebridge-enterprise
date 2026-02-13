@@ -1,85 +1,82 @@
-// app/sustainability/page.tsx
-import { Metadata } from 'next';
+import type { Metadata } from 'next'
+import PageHero from '@/components/PageHero'
 
 export const metadata: Metadata = {
-  title: 'Sustainability & ESG | MileBridge Logistics',
-  description: 'Our commitment to sustainable logistics, green fleet initiatives, and environmental responsibility.',
-};
+  title: 'Sustainability | MileBridge Logistics',
+  description:
+    'MileBridge sustainability roadmap focused on cleaner transport operations, better resource usage, and measurable environmental improvements.',
+}
+
+const initiatives = [
+  {
+    title: 'Cleaner Fleet Mix',
+    description:
+      'We are piloting low-emission vehicle options on routes where charging support and utilization patterns are operationally stable.',
+  },
+  {
+    title: 'Fuel Efficiency Controls',
+    description:
+      'Route discipline, idle-time reduction, and load optimization are used to reduce avoidable fuel burn across our network.',
+  },
+  {
+    title: 'Waste Handling Practices',
+    description:
+      'Hubs follow packaging waste segregation and compliant disposal practices with periodic internal monitoring.',
+  },
+  {
+    title: 'Facility Energy Efficiency',
+    description:
+      'Lighting upgrades and usage controls are being implemented to reduce non-essential power consumption.',
+  },
+]
+
+const commitments = [
+  'Increase low-emission fleet participation on suitable lanes.',
+  'Track route-level fuel performance and monthly variance.',
+  'Strengthen recycling and disposal compliance at operating locations.',
+  'Train teams on sustainability-oriented SOPs and operating checks.',
+  'Include sustainability KPIs in regular operational review forums.',
+]
 
 export default function SustainabilityPage() {
-  const initiatives = [
-    { icon: '🔋', title: 'Electric Fleet', stat: '30%', description: 'of our urban fleet is electric' },
-    { icon: '🌱', title: 'Carbon Reduction', stat: '40%', description: 'reduction in emissions since 2023' },
-    { icon: '♻️', title: 'Green Warehouses', stat: '5', description: 'LEED-certified facilities' },
-    { icon: '☀️', title: 'Solar Power', stat: '2 MW', description: 'of solar capacity installed' },
-  ];
-
-  const commitments = [
-    '100% electric fleet in metro cities by 2027',
-    'Carbon neutral operations by 2030',
-    'Zero waste to landfill by 2028',
-    'Sustainable packaging across all operations',
-    'Partner with eco-conscious suppliers',
-    'Employee sustainability training programs',
-  ];
-
   return (
-    <>
-      {/* Hero */}
-      <section className="py-20 bg-gradient-to-br from-green-900 to-green-700 text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="text-6xl mb-6">🌍</div>
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">Sustainability & ESG</h1>
-          <p className="text-xl max-w-3xl mx-auto">
-            Building a greener future through sustainable logistics practices
-          </p>
-        </div>
-      </section>
+    <div className="min-h-screen">
+      <PageHero
+        eyebrow="SUSTAINABILITY"
+        title="Responsible Logistics, Practical Execution"
+        description="Our sustainability model focuses on actions that can be implemented and measured across fleet operations, facilities, and daily execution workflows."
+      />
 
-      {/* Initiatives */}
-      <section className="py-16 bg-white">
+      <section className="py-16 md:py-20 bg-gradient-to-b from-white to-red-50/60">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-center mb-12">Our Green Initiatives</h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {initiatives.map((initiative, index) => (
-              <div key={index} className="text-center p-6 bg-green-50 rounded-lg">
-                <div className="text-5xl mb-4">{initiative.icon}</div>
-                <div className="text-3xl font-bold text-green-600 mb-2">{initiative.stat}</div>
-                <h3 className="text-xl font-bold mb-2">{initiative.title}</h3>
-                <p className="text-gray-600">{initiative.description}</p>
-              </div>
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 text-center mb-10">Current Focus Areas</h2>
+          <div className="grid md:grid-cols-2 gap-7">
+            {initiatives.map((item, index) => (
+              <article key={item.title} className="rounded-2xl border border-gray-200 bg-white p-7 shadow-sm">
+                <div className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-red-100 text-red-700 font-bold mb-4">
+                  {index + 1}
+                </div>
+                <h3 className="text-2xl font-bold text-gray-900 mb-3">{item.title}</h3>
+                <p className="text-gray-700 leading-relaxed">{item.description}</p>
+              </article>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Commitments */}
-      <section className="py-16 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-center mb-12">Our Commitments</h2>
-          <div className="max-w-3xl mx-auto">
-            <div className="space-y-4">
-              {commitments.map((commitment, index) => (
-                <div key={index} className="flex items-start gap-3 bg-white p-4 rounded-lg">
-                  <span className="text-green-600 font-bold text-xl">🌿</span>
-                  <span className="text-gray-700 text-lg">{commitment}</span>
-                </div>
-              ))}
-            </div>
+      <section className="py-16 md:py-20 bg-white border-y border-gray-200">
+        <div className="max-w-4xl mx-auto px-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 text-center mb-10">Commitment Roadmap</h2>
+          <div className="space-y-4">
+            {commitments.map((item) => (
+              <div key={item} className="rounded-xl border border-gray-200 bg-gray-50 p-4 flex items-start gap-3">
+                <span className="text-red-600 mt-0.5">✓</span>
+                <span className="text-gray-700">{item}</span>
+              </div>
+            ))}
           </div>
         </div>
       </section>
-
-      {/* Impact */}
-      <section className="py-16 bg-white">
-        <div className="max-w-4xl mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold mb-4">Making a Real Impact</h2>
-          <p className="text-xl text-gray-600">
-            Every delivery we make is a step toward a more sustainable future. 
-            Join us in building environmentally responsible logistics.
-          </p>
-        </div>
-      </section>
-    </>
-  );
+    </div>
+  )
 }

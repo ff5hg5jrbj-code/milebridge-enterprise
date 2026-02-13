@@ -1,3 +1,5 @@
+import Image from 'next/image'
+
 export default function About() {
   return (
     <section id="about" className="relative py-24 bg-gradient-to-b from-white to-blue-50">
@@ -29,7 +31,7 @@ export default function About() {
                 </div>
                 <div>
                   <h3 className="font-bold text-gray-900 mb-1">Nationwide Reach</h3>
-                  <p className="text-gray-600 text-sm">Comprehensive coverage across India's diverse terrain</p>
+                  <p className="text-gray-600 text-sm">Comprehensive coverage across India&apos;s diverse terrain</p>
                 </div>
               </div>
 
@@ -61,11 +63,13 @@ export default function About() {
 
           {/* Right: Visual Element */}
           <div className="relative">
-            <div className="relative rounded-3xl overflow-hidden shadow-2xl">
-              <img 
-                src="/images/hero-logistics.jpg" 
-                alt="MileBridge Operations" 
-                className="w-full h-96 object-cover"
+            <div className="relative h-96 rounded-3xl overflow-hidden shadow-2xl">
+              <Image
+                src="/images/hero-logistics.jpg"
+                alt="MileBridge Operations"
+                fill
+                sizes="(max-width: 768px) 100vw, 50vw"
+                className="object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-blue-900/50 to-transparent"></div>
             </div>

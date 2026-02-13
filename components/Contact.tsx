@@ -3,29 +3,38 @@ import { useState } from 'react'
 
 export default function Contact() {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' })
-  const [status, setStatus] = useState('')
+  const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle')
+  const [statusMessage, setStatusMessage] = useState('')
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setStatus('sending')
+    setStatusMessage('')
 
     try {
-      const response = await fetch('https://formspree.io/f/mgokdjzq', {
+      const response = await fetch('/api/contact', {
         method: 'POST',
         headers: { 
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify(formData)
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          message: formData.message
+        })
       })
 
       if (response.ok) {
         setStatus('success')
+        setStatusMessage('Message sent successfully. We will get back to you soon.')
         setFormData({ name: '', email: '', message: '' })
-        setTimeout(() => setStatus(''), 5000)
       } else {
+        const result = await response.json().catch(() => null)
+        setStatusMessage(result?.error || 'Error sending message. Please try again or email info@milebridge.in.')
         setStatus('error')
       }
-    } catch (error) {
+    } catch {
+      setStatusMessage('Error sending message. Please try again or email info@milebridge.in.')
       setStatus('error')
     }
   }
@@ -43,7 +52,7 @@ export default function Contact() {
                 required
                 value={formData.name}
                 onChange={(e) => setFormData({...formData, name: e.target.value})}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-600" 
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500" 
               />
             </div>
             <div>
@@ -53,7 +62,7 @@ export default function Contact() {
                 required
                 value={formData.email}
                 onChange={(e) => setFormData({...formData, email: e.target.value})}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-600" 
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500" 
               />
             </div>
             <div>
@@ -63,19 +72,19 @@ export default function Contact() {
                 required
                 value={formData.message}
                 onChange={(e) => setFormData({...formData, message: e.target.value})}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-600"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
               ></textarea>
             </div>
             
             {status === 'success' && (
               <div className="bg-green-100 text-green-700 p-4 rounded-lg">
-                ✅ Message sent successfully! We'll get back to you soon.
+                ✅ {statusMessage}
               </div>
             )}
             
             {status === 'error' && (
               <div className="bg-red-100 text-red-700 p-4 rounded-lg">
-                ❌ Error sending message. Please try again or email us at info@milebridge.in
+                ❌ {statusMessage}
               </div>
             )}
             

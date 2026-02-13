@@ -1,5 +1,6 @@
 // components/Hero.tsx
 import Link from 'next/link'
+import Image from 'next/image'
 
 export default function Hero() {
   return (
@@ -40,9 +41,11 @@ export default function Hero() {
           {/* Right Image - RESIZED */}
           <div className="relative">
             <div className="relative max-w-xl mx-auto">
-              <img 
+              <Image
                 src="/images/hero-truck.jpg"
-                alt="MileBridge Logistics Truck" 
+                alt="MileBridge Logistics Truck"
+                width={1200}
+                height={800}
                 className="w-full h-auto max-h-[450px] object-cover rounded-xl md:rounded-2xl shadow-2xl"
               />
             </div>

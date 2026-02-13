@@ -1,6 +1,6 @@
 // components/StatsCounter.tsx
 'use client';
-import { LineChart, Line, ResponsiveContainer, Tooltip, YAxis } from 'recharts';
+import dynamic from 'next/dynamic';
 
 interface StatData {
   value: string;
@@ -10,11 +10,16 @@ interface StatData {
   yAxisDomain: [number, number];
 }
 
+const StatLineChart = dynamic(() => import('@/components/StatLineChart'), {
+  ssr: false,
+  loading: () => <div className="h-full w-full rounded-lg bg-slate-700/40" aria-hidden="true" />,
+});
+
 const statsData: StatData[] = [
   {
     value: "99.8%",
     label: "ON-TIME DELIVERY",
-    color: "#3b82f6",
+    color: "#ef4444",
     yAxisDomain: [98, 100],
     data: [
       { month: 'Jul', value: 98.5 },
@@ -28,7 +33,7 @@ const statsData: StatData[] = [
   {
     value: "99.6%",
     label: "FLEET UPTIME",
-    color: "#06b6d4",
+    color: "#f97316",
     yAxisDomain: [98, 100],
     data: [
       { month: 'Jul', value: 98.2 },
@@ -56,7 +61,7 @@ const statsData: StatData[] = [
   {
     value: "99.9%",
     label: "TRACKING UPTIME",
-    color: "#8b5cf6",
+    color: "#dc2626",
     yAxisDomain: [99, 100],
     data: [
       { month: 'Jul', value: 99.3 },
@@ -73,59 +78,24 @@ function StatCard({ stat }: { stat: StatData }) {
   return (
     <div className="group relative">
       {/* Glow Effect */}
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-red-500/20 to-orange-500/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
       
       {/* Card - FIXED: Solid background instead of transparent for Firefox */}
-      <div className="relative bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl p-6 border border-slate-700 hover:border-blue-500 transition-all duration-300 shadow-xl">
+      <div className="relative bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl p-6 border border-slate-700 hover:border-red-500 transition-all duration-300 shadow-xl">
         
         {/* Top: Number - FIXED: Better text contrast */}
         <div className="mb-4">
           <div className="text-5xl md:text-6xl font-bold text-white mb-2" style={{ textShadow: '0 2px 10px rgba(0,0,0,0.5)' }}>
             {stat.value}
           </div>
-          <div className="text-blue-300 text-xs md:text-sm font-semibold tracking-wider uppercase">
+          <div className="text-red-300 text-xs md:text-sm font-semibold tracking-wider uppercase">
             {stat.label}
           </div>
         </div>
         
         {/* Chart with proper Y-axis scaling */}
         <div className="h-24 -mx-2">
-          <ResponsiveContainer width="100%" height="100%">
-            <LineChart data={stat.data}>
-              <defs>
-                <linearGradient id={`gradient-${stat.label}`} x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stopColor={stat.color} stopOpacity={0.4} />
-                  <stop offset="100%" stopColor={stat.color} stopOpacity={0.05} />
-                </linearGradient>
-              </defs>
-              <YAxis domain={stat.yAxisDomain} hide />
-              <Tooltip
-                contentStyle={{
-                  backgroundColor: 'rgba(0,0,0,0.9)',
-                  border: 'none',
-                  borderRadius: '8px',
-                  color: 'white',
-                  fontSize: '12px',
-                  padding: '8px 12px'
-                }}
-                formatter={(value) => {
-                  if (value === undefined || value === null) return ['-', 'Value'];
-                  return [`${value}%`, 'Value'];
-                }}
-              />
-              <Line
-                type="monotone"
-                dataKey="value"
-                stroke={stat.color}
-                strokeWidth={3}
-                dot={{ fill: stat.color, r: 4 }}
-                activeDot={{ r: 6, fill: stat.color }}
-                fill={`url(#gradient-${stat.label})`}
-                animationDuration={2000}
-                animationEasing="ease-in-out"
-              />
-            </LineChart>
-          </ResponsiveContainer>
+          <StatLineChart stat={stat} />
         </div>
         
         {/* Trend Indicator */}
@@ -148,18 +118,18 @@ function StatCard({ stat }: { stat: StatData }) {
 
 export function StatsCounter() {
   return (
-    <section className="relative py-16 md:py-20 bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 overflow-hidden">
+    <section className="relative py-16 md:py-20 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 overflow-hidden">
       {/* Animated Grid Background */}
       <div className="absolute inset-0 opacity-20">
         <div className="absolute inset-0" style={{
-          backgroundImage: `radial-gradient(circle, rgba(59,130,246,0.3) 1px, transparent 1px)`,
+          backgroundImage: `radial-gradient(circle, rgba(239,68,68,0.26) 1px, transparent 1px)`,
           backgroundSize: '40px 40px'
         }}></div>
       </div>
       
       {/* Floating Orbs */}
-      <div className="absolute top-20 left-20 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl animate-pulse"></div>
-      <div className="absolute bottom-20 right-20 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl animate-pulse" style={{animationDelay: '1.5s'}}></div>
+      <div className="absolute top-20 left-20 w-96 h-96 bg-red-500/20 rounded-full blur-3xl animate-pulse"></div>
+      <div className="absolute bottom-20 right-20 w-96 h-96 bg-orange-500/20 rounded-full blur-3xl animate-pulse" style={{animationDelay: '1.5s'}}></div>
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Stats Grid */}

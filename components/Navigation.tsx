@@ -1,5 +1,6 @@
 'use client'
 import Link from 'next/link'
+import Image from 'next/image'
 import { useState, useRef, useEffect } from 'react'
 import { usePathname } from 'next/navigation'
 
@@ -11,13 +12,6 @@ export default function Navigation() {
   
   const servicesTimeout = useRef<NodeJS.Timeout | null>(null)
   const industriesTimeout = useRef<NodeJS.Timeout | null>(null)
-
-  // Close mobile menu when route changes
-  useEffect(() => {
-    setMobileMenuOpen(false)
-    setServicesOpen(false)
-    setIndustriesOpen(false)
-  }, [pathname])
 
   // Cleanup timeouts on unmount
   useEffect(() => {
@@ -70,21 +64,23 @@ export default function Navigation() {
 
   return (
     <nav 
-      className="bg-white shadow-md sticky top-0 z-50"
+      className="sticky top-0 z-50 border-b border-gray-200 bg-white shadow-sm"
       role="navigation"
       aria-label="Main navigation"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
+        <div className="flex justify-between items-center h-16 md:h-[4.5rem]">
           {/* Logo */}
           <Link 
             href="/" 
             className="flex items-center"
             aria-label="MileBridge Logistics - Home"
           >
-            <img 
-              src="/logo.png" 
-              alt="MileBridge Logistics" 
+            <Image
+              src="/logo.png"
+              alt="MileBridge Logistics"
+              width={180}
+              height={48}
               className="h-12 w-auto"
             />
           </Link>
@@ -93,7 +89,7 @@ export default function Navigation() {
           <div className="hidden md:flex items-center space-x-8">
             <Link 
               href="/" 
-              className={`font-medium transition-colors ${
+              className={`font-semibold tracking-[0.01em] transition-colors ${
                 pathname === '/' ? 'text-red-600' : 'text-gray-700 hover:text-red-600'
               }`}
             >
@@ -107,7 +103,7 @@ export default function Navigation() {
               onMouseLeave={handleServicesLeave}
             >
               <button 
-                className={`font-medium flex items-center gap-1 transition-colors ${
+                className={`font-semibold tracking-[0.01em] flex items-center gap-1 transition-colors ${
                   pathname.startsWith('/services') ? 'text-red-600' : 'text-gray-700 hover:text-red-600'
                 }`}
                 aria-expanded={servicesOpen}
@@ -127,7 +123,7 @@ export default function Navigation() {
               </button>
               {servicesOpen && (
                 <div 
-                  className="absolute left-0 mt-1 w-56 bg-white rounded-lg shadow-lg py-2 border border-gray-100"
+                  className="absolute left-0 mt-3 w-60 bg-white rounded-xl shadow-lg py-2 border border-gray-200"
                   role="menu"
                   aria-label="Services submenu"
                 >
@@ -156,7 +152,7 @@ export default function Navigation() {
               onMouseLeave={handleIndustriesLeave}
             >
               <button 
-                className={`font-medium flex items-center gap-1 transition-colors ${
+                className={`font-semibold tracking-[0.01em] flex items-center gap-1 transition-colors ${
                   pathname.startsWith('/industries') ? 'text-red-600' : 'text-gray-700 hover:text-red-600'
                 }`}
                 aria-expanded={industriesOpen}
@@ -176,7 +172,7 @@ export default function Navigation() {
               </button>
               {industriesOpen && (
                 <div 
-                  className="absolute left-0 mt-1 w-56 bg-white rounded-lg shadow-lg py-2 border border-gray-100"
+                  className="absolute left-0 mt-3 w-60 bg-white rounded-xl shadow-lg py-2 border border-gray-200"
                   role="menu"
                   aria-label="Industries submenu"
                 >
@@ -200,7 +196,7 @@ export default function Navigation() {
 
             <Link 
               href="/about" 
-              className={`font-medium transition-colors ${
+              className={`font-semibold tracking-[0.01em] transition-colors ${
                 pathname === '/about' ? 'text-red-600' : 'text-gray-700 hover:text-red-600'
               }`}
             >
@@ -208,7 +204,7 @@ export default function Navigation() {
             </Link>
             <Link 
               href="/technology" 
-              className={`font-medium transition-colors ${
+              className={`font-semibold tracking-[0.01em] transition-colors ${
                 pathname === '/technology' ? 'text-red-600' : 'text-gray-700 hover:text-red-600'
               }`}
             >
@@ -216,7 +212,7 @@ export default function Navigation() {
             </Link>
             <Link 
               href="/careers" 
-              className={`font-medium transition-colors ${
+              className={`font-semibold tracking-[0.01em] transition-colors ${
                 pathname === '/careers' ? 'text-red-600' : 'text-gray-700 hover:text-red-600'
               }`}
             >
@@ -224,7 +220,7 @@ export default function Navigation() {
             </Link>
             <Link 
               href="/contact" 
-              className={`font-medium transition-colors ${
+              className={`font-semibold tracking-[0.01em] transition-colors ${
                 pathname === '/contact' ? 'text-red-600' : 'text-gray-700 hover:text-red-600'
               }`}
             >
@@ -240,7 +236,7 @@ export default function Navigation() {
 
           {/* Mobile Menu Button - FIX #5: Accessibility */}
           <button
-            className="md:hidden text-gray-700 p-2 hover:text-red-600 transition"
+            className="md:hidden text-gray-700 p-2 hover:text-red-600 transition rounded-lg hover:bg-red-50/70"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label="Toggle navigation menu"
             aria-expanded={mobileMenuOpen}
@@ -267,7 +263,7 @@ export default function Navigation() {
         {mobileMenuOpen && (
           <div 
             id="mobile-menu"
-            className="md:hidden py-4 border-t border-gray-200"
+            className="md:hidden py-4 border-t border-gray-200 bg-white rounded-b-xl"
             role="menu"
           >
             <Link

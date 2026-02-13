@@ -1,6 +1,140 @@
 'use client'
 
 import { useState } from 'react'
+import PageHero from '@/components/PageHero'
+
+interface JobListing {
+  title: string
+  department: string
+  location: string
+  type: string
+  description: string
+  responsibilities: string[]
+  requirements: string[]
+}
+
+const jobListings: JobListing[] = [
+  {
+    title: 'Delivery Driver',
+    department: 'Operations',
+    location: 'Jammu & Kashmir',
+    type: 'Full-time',
+    description:
+      'Join our fleet operations team and execute reliable deliveries across regional and mountain routes.',
+    responsibilities: [
+      'Operate assigned vehicles safely across planned routes.',
+      'Complete pickups and deliveries as per run-sheet commitments.',
+      'Record delivery status, proof-of-delivery, and route exceptions.',
+      'Coordinate with hub teams for load checks and closure updates.',
+    ],
+    requirements: [
+      'Valid commercial driving license.',
+      'At least 2 years of commercial driving experience.',
+      'Comfort with hilly and long-route operations.',
+      'Strong punctuality and professional conduct.',
+    ],
+  },
+  {
+    title: 'Logistics Coordinator',
+    department: 'Operations',
+    location: 'Jammu (Head Office)',
+    type: 'Full-time',
+    description:
+      'Coordinate dispatch plans, monitor service performance, and support daily operations governance.',
+    responsibilities: [
+      'Prepare route plans and dispatch schedules.',
+      'Track active shipments and escalate route exceptions.',
+      'Coordinate with hubs, riders, and fleet teams.',
+      'Maintain daily service and turnaround reports.',
+    ],
+    requirements: [
+      'Graduate degree in logistics, operations, or a related discipline.',
+      '1 to 3 years of logistics operations experience.',
+      'Strong communication and problem-solving skills.',
+      'Working knowledge of spreadsheets and operational dashboards.',
+    ],
+  },
+  {
+    title: 'Warehouse Supervisor',
+    department: 'Warehouse',
+    location: 'Jammu',
+    type: 'Full-time',
+    description:
+      'Lead warehouse execution with focus on inventory accuracy, dispatch readiness, and team discipline.',
+    responsibilities: [
+      'Supervise inbound, putaway, pick-pack, and dispatch activities.',
+      'Ensure inventory controls and cycle counts are followed.',
+      'Manage shift rosters and warehouse productivity.',
+      'Enforce workplace safety and compliance standards.',
+    ],
+    requirements: [
+      'At least 3 years of warehouse experience, including team handling.',
+      'Knowledge of inventory and warehouse process controls.',
+      'Comfort with shift-based operations.',
+      'Strong people management and reporting discipline.',
+    ],
+  },
+  {
+    title: 'Fleet Maintenance Technician',
+    department: 'Maintenance',
+    location: 'Jammu',
+    type: 'Full-time',
+    description:
+      'Maintain vehicle uptime through preventive maintenance and timely repair intervention.',
+    responsibilities: [
+      'Perform routine inspections and maintenance checks.',
+      'Diagnose and repair mechanical or electrical issues.',
+      'Maintain service records and maintenance logs.',
+      'Support compliance and roadworthiness checks.',
+    ],
+    requirements: [
+      'ITI or diploma in automobile engineering or equivalent.',
+      'At least 3 years of commercial fleet maintenance experience.',
+      'Hands-on diagnostic and repair capability.',
+      'Understanding of safety and maintenance SOPs.',
+    ],
+  },
+  {
+    title: 'Customer Service Representative',
+    department: 'Support',
+    location: 'Jammu',
+    type: 'Full-time',
+    description:
+      'Support clients and recipients through timely shipment updates and resolution of service queries.',
+    responsibilities: [
+      'Respond to shipment-related customer inquiries.',
+      'Share delivery milestones and status updates.',
+      'Resolve escalations by coordinating with operations teams.',
+      'Maintain records of customer interactions and closures.',
+    ],
+    requirements: [
+      'Graduate in any discipline.',
+      '1 to 2 years of customer support experience.',
+      'Strong spoken and written communication in English and Hindi.',
+      'Basic computer proficiency for CRM and tracking tools.',
+    ],
+  },
+  {
+    title: 'Business Development Executive',
+    department: 'Sales',
+    location: 'Jammu & Remote',
+    type: 'Full-time',
+    description:
+      'Drive growth by identifying qualified leads and building long-term logistics partnerships.',
+    responsibilities: [
+      'Generate and manage pipeline opportunities.',
+      'Build relationships with e-commerce and B2B accounts.',
+      'Create proposals and support contract closures.',
+      'Coordinate handover from sales to operations teams.',
+    ],
+    requirements: [
+      'Graduate degree in business, marketing, or a related field.',
+      'At least 2 years of B2B sales experience.',
+      'Strong presentation and negotiation skills.',
+      'Ability to travel for client meetings when required.',
+    ],
+  },
+]
 
 export default function CareersPage() {
   const [formData, setFormData] = useState({
@@ -10,17 +144,18 @@ export default function CareersPage() {
     position: '',
     experience: '',
     coverLetter: '',
-    resume: null as File | null
+    resume: null as File | null,
   })
 
+  const [resumeInputKey, setResumeInputKey] = useState(0)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitMessage, setSubmitMessage] = useState('')
-  const [selectedPosition, setSelectedPosition] = useState('')
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     })
   }
 
@@ -28,19 +163,48 @@ export default function CareersPage() {
     if (e.target.files && e.target.files[0]) {
       setFormData({
         ...formData,
-        resume: e.target.files[0]
+        resume: e.target.files[0],
       })
     }
+  }
+
+  const handleApplyClick = (jobTitle: string) => {
+    setFormData((prev) => ({ ...prev, position: jobTitle }))
+    document.getElementById('apply')?.scrollIntoView({ behavior: 'smooth' })
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
     setSubmitMessage('')
+    setSubmitStatus('idle')
 
-    setTimeout(() => {
-      setSubmitMessage('Application submitted successfully! We will review your application and get back to you soon.')
-      setIsSubmitting(false)
+    try {
+      const payload = new FormData()
+      payload.append('fullName', formData.fullName)
+      payload.append('email', formData.email)
+      payload.append('phone', formData.phone)
+      payload.append('position', formData.position)
+      payload.append('experience', formData.experience)
+      payload.append('coverLetter', formData.coverLetter)
+
+      if (formData.resume) {
+        payload.append('resume', formData.resume)
+      }
+
+      const response = await fetch('/api/careers', {
+        method: 'POST',
+        body: payload,
+      })
+
+      if (!response.ok) {
+        const result = await response.json().catch(() => null)
+        const error = result?.error || 'Unable to submit your application right now.'
+        throw new Error(error)
+      }
+
+      setSubmitStatus('success')
+      setSubmitMessage('Application submitted successfully. Our hiring team will contact you soon.')
       setFormData({
         fullName: '',
         email: '',
@@ -48,252 +212,89 @@ export default function CareersPage() {
         position: '',
         experience: '',
         coverLetter: '',
-        resume: null
+        resume: null,
       })
-      setSelectedPosition('')
-    }, 1000)
-  }
-
-  const handleApplyClick = (jobTitle: string) => {
-    const positionValue = jobTitle.toLowerCase().replace(/\s+/g, '-')
-    setSelectedPosition(positionValue)
-    setFormData({ ...formData, position: positionValue })
-    
-    setTimeout(() => {
-      document.getElementById('apply')?.scrollIntoView({ behavior: 'smooth' })
-    }, 100)
-  }
-
-  // Job Listings Data
-  const jobListings = [
-    {
-      title: "Delivery Driver",
-      department: "Operations",
-      location: "Jammu & Kashmir",
-      type: "Full-time",
-      description: "Join our fleet of professional drivers delivering excellence across challenging mountain terrains.",
-      responsibilities: [
-        "Safely operate delivery vehicles across mountain routes",
-        "Ensure on-time delivery of packages and freight",
-        "Maintain vehicle cleanliness and perform basic maintenance",
-        "Provide excellent customer service during deliveries"
-      ],
-      requirements: [
-        "Valid commercial driving license",
-        "2+ years driving experience (mountain terrain preferred)",
-        "Clean driving record",
-        "Physical fitness for loading/unloading"
-      ]
-    },
-    {
-      title: "Logistics Coordinator",
-      department: "Operations",
-      location: "Jammu (Head Office)",
-      type: "Full-time",
-      description: "Coordinate daily logistics operations and ensure seamless delivery execution.",
-      responsibilities: [
-        "Plan and optimize delivery routes",
-        "Coordinate with drivers and warehouse teams",
-        "Track shipments and provide real-time updates",
-        "Resolve delivery issues and customer concerns"
-      ],
-      requirements: [
-        "Bachelor's degree in Logistics or related field",
-        "1-3 years logistics experience",
-        "Strong analytical and problem-solving skills",
-        "Proficiency in logistics software and MS Excel"
-      ]
-    },
-    {
-      title: "Warehouse Supervisor",
-      department: "Warehouse",
-      location: "Jammu",
-      type: "Full-time",
-      description: "Oversee warehouse operations and lead a team for smooth goods handling.",
-      responsibilities: [
-        "Supervise daily warehouse operations and staff",
-        "Manage inventory control and stock accuracy",
-        "Coordinate inbound and outbound shipments",
-        "Ensure workplace safety compliance"
-      ],
-      requirements: [
-        "3+ years warehouse experience with supervisory role",
-        "Knowledge of inventory management systems",
-        "Strong leadership skills",
-        "Understanding of safety regulations"
-      ]
-    },
-    {
-      title: "Fleet Maintenance Technician",
-      department: "Maintenance",
-      location: "Jammu",
-      type: "Full-time",
-      description: "Maintain our fleet of 40+ vehicles to ensure optimal performance.",
-      responsibilities: [
-        "Perform routine vehicle maintenance and inspections",
-        "Diagnose and repair mechanical/electrical issues",
-        "Maintain detailed service records",
-        "Ensure vehicles meet safety standards"
-      ],
-      requirements: [
-        "ITI/Diploma in Automobile Engineering",
-        "3+ years commercial vehicle maintenance experience",
-        "Strong mechanical and diagnostic skills",
-        "Knowledge of modern vehicle systems"
-      ]
-    },
-    {
-      title: "Customer Service Representative",
-      department: "Support",
-      location: "Jammu",
-      type: "Full-time",
-      description: "Provide exceptional customer support throughout the delivery process.",
-      responsibilities: [
-        "Handle customer inquiries via phone and email",
-        "Track and update shipment status",
-        "Resolve complaints and delivery issues",
-        "Maintain customer relationship database"
-      ],
-      requirements: [
-        "Graduate in any field",
-        "1-2 years customer service experience",
-        "Excellent communication in English and Hindi",
-        "Computer proficiency and multitasking ability"
-      ]
-    },
-    {
-      title: "Business Development Executive",
-      department: "Sales",
-      location: "Jammu & Remote",
-      type: "Full-time",
-      description: "Drive business growth by acquiring new clients and partnerships.",
-      responsibilities: [
-        "Identify and pursue new business opportunities",
-        "Build relationships with e-commerce and B2B clients",
-        "Prepare proposals and negotiate contracts",
-        "Achieve monthly sales targets"
-      ],
-      requirements: [
-        "Bachelor's degree in Business or Marketing",
-        "2+ years B2B sales experience",
-        "Excellent presentation and negotiation skills",
-        "Willingness to travel"
-      ]
+      setResumeInputKey((prev) => prev + 1)
+    } catch (error) {
+      setSubmitStatus('error')
+      const message = error instanceof Error ? error.message : 'Unable to submit your application right now.'
+      setSubmitMessage(`${message} You can also email your resume to hr@milebridge.in.`)
+    } finally {
+      setIsSubmitting(false)
     }
-  ]
+  }
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Hero Section */}
-      <section className="bg-gradient-to-br from-blue-900 to-indigo-900 text-white py-16 md:py-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold mb-6">Join Our Team</h1>
-          <p className="text-xl text-blue-100 max-w-2xl mx-auto">
-            Be part of India's fastest-growing logistics company delivering excellence across challenging terrains
-          </p>
-        </div>
-      </section>
+    <div className="min-h-screen">
+      <PageHero
+        eyebrow="CAREERS"
+        title="Build Your Career with MileBridge"
+        description="Join a fast-scaling logistics team where operational discipline, ownership, and customer impact drive every role."
+      />
 
-      {/* Why Work With Us */}
-      <section className="py-16 bg-white">
+      <section className="py-16 md:py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-gray-900 text-center mb-12">Why MileBridge?</h2>
-          
-          <div className="grid md:grid-cols-4 gap-8">
-            <div className="text-center">
-              <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg className="w-8 h-8 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M8.433 7.418c.155-.103.346-.196.567-.267v1.698a2.305 2.305 0 01-.567-.267C8.07 8.34 8 8.114 8 8c0-.114.07-.34.433-.582zM11 12.849v-1.698c.22.071.412.164.567.267.364.243.433.468.433.582 0 .114-.07.34-.433.582a2.305 2.305 0 01-.567.267z"/>
-                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-13a1 1 0 10-2 0v.092a4.535 4.535 0 00-1.676.662C6.602 6.234 6 7.009 6 8c0 .99.602 1.765 1.324 2.246.48.32 1.054.545 1.676.662v1.941c-.391-.127-.68-.317-.843-.504a1 1 0 10-1.51 1.31c.562.649 1.413 1.076 2.353 1.253V15a1 1 0 102 0v-.092a4.535 4.535 0 001.676-.662C13.398 13.766 14 12.991 14 12c0-.99-.602-1.765-1.324-2.246A4.535 4.535 0 0011 9.092V7.151c.391.127.68.317.843.504a1 1 0 101.511-1.31c-.563-.649-1.413-1.076-2.354-1.253V5z" clipRule="evenodd"/>
-                </svg>
-              </div>
-              <h3 className="font-bold text-gray-900 mb-2">Competitive Pay</h3>
-              <p className="text-gray-600 text-sm">Industry-leading salaries with performance incentives</p>
-            </div>
-
-            <div className="text-center">
-              <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg className="w-8 h-8 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3zM3.31 9.397L5 10.12v4.102a8.969 8.969 0 00-1.05-.174 1 1 0 01-.89-.89 11.115 11.115 0 01.25-3.762zM9.3 16.573A9.026 9.026 0 007 14.935v-3.957l1.818.78a3 3 0 002.364 0l5.508-2.361a11.026 11.026 0 01.25 3.762 1 1 0 01-.89.89 8.968 8.968 0 00-5.35 2.524 1 1 0 01-1.4 0zM6 18a1 1 0 001-1v-2.065a8.935 8.935 0 00-2-.712V17a1 1 0 001 1z"/>
-                </svg>
-              </div>
-              <h3 className="font-bold text-gray-900 mb-2">Career Growth</h3>
-              <p className="text-gray-600 text-sm">Training programs and promotion opportunities</p>
-            </div>
-
-            <div className="text-center">
-              <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg className="w-8 h-8 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 100-2H6z" clipRule="evenodd"/>
-                </svg>
-              </div>
-              <h3 className="font-bold text-gray-900 mb-2">Work-Life Balance</h3>
-              <p className="text-gray-600 text-sm">Paid leave and flexible schedules</p>
-            </div>
-
-            <div className="text-center">
-              <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg className="w-8 h-8 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z"/>
-                </svg>
-              </div>
-              <h3 className="font-bold text-gray-900 mb-2">Great Team</h3>
-              <p className="text-gray-600 text-sm">Collaborative culture with supportive colleagues</p>
-            </div>
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 text-center mb-10">Why Join MileBridge</h2>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <article className="rounded-2xl border border-gray-200 bg-gradient-to-b from-white to-red-50/60 p-6">
+              <h3 className="text-lg font-bold text-gray-900 mb-2">Performance Culture</h3>
+              <p className="text-gray-600 text-sm">Work in a team that values accountability, speed, and execution quality.</p>
+            </article>
+            <article className="rounded-2xl border border-gray-200 bg-gradient-to-b from-white to-red-50/60 p-6">
+              <h3 className="text-lg font-bold text-gray-900 mb-2">Growth Pathways</h3>
+              <p className="text-gray-600 text-sm">Build skills through hands-on operations exposure and structured responsibilities.</p>
+            </article>
+            <article className="rounded-2xl border border-gray-200 bg-gradient-to-b from-white to-red-50/60 p-6">
+              <h3 className="text-lg font-bold text-gray-900 mb-2">Real Impact</h3>
+              <p className="text-gray-600 text-sm">Contribute to high-volume delivery operations that directly impact customer outcomes.</p>
+            </article>
+            <article className="rounded-2xl border border-gray-200 bg-gradient-to-b from-white to-red-50/60 p-6">
+              <h3 className="text-lg font-bold text-gray-900 mb-2">Team Environment</h3>
+              <p className="text-gray-600 text-sm">Collaborate with experienced operators across fleet, warehouse, and service teams.</p>
+            </article>
           </div>
         </div>
       </section>
 
-      {/* Job Openings */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-16 md:py-20 bg-gradient-to-b from-gray-50 to-red-50/60 border-y border-gray-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-gray-900 text-center mb-12">Current Openings</h2>
-          
-          <div className="grid md:grid-cols-2 gap-8">
-            {jobListings.map((job, index) => (
-              <div key={index} className="bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition">
-                <div className="flex justify-between items-start mb-4">
-                  <div>
-                    <h3 className="text-2xl font-bold text-gray-900 mb-2">{job.title}</h3>
-                    <div className="flex flex-wrap gap-2">
-                      <span className="px-3 py-1 bg-blue-100 text-blue-700 text-sm rounded-full font-semibold">
-                        {job.department}
-                      </span>
-                      <span className="px-3 py-1 bg-green-100 text-green-700 text-sm rounded-full font-semibold">
-                        {job.type}
-                      </span>
-                    </div>
-                  </div>
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 text-center mb-10">Current Openings</h2>
+
+          <div className="grid md:grid-cols-2 gap-7">
+            {jobListings.map((job) => (
+              <article key={job.title} className="rounded-2xl border border-gray-200 bg-white p-7 shadow-sm hover:shadow-lg transition">
+                <div className="flex flex-wrap items-center gap-2 mb-3">
+                  <span className="inline-flex rounded-full bg-red-100 text-red-700 px-3 py-1 text-xs font-semibold">
+                    {job.department}
+                  </span>
+                  <span className="inline-flex rounded-full bg-gray-100 text-gray-700 px-3 py-1 text-xs font-semibold">
+                    {job.type}
+                  </span>
                 </div>
 
-                <p className="text-gray-600 mb-4 flex items-center gap-2">
-                  <svg className="w-5 h-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd"/>
-                  </svg>
-                  {job.location}
-                </p>
+                <h3 className="text-2xl font-bold text-gray-900 mb-2">{job.title}</h3>
+                <p className="text-sm text-gray-500 mb-4">{job.location}</p>
+                <p className="text-gray-700 mb-5">{job.description}</p>
 
-                <p className="text-gray-700 mb-4">{job.description}</p>
-
-                <div className="mb-4">
-                  <h4 className="font-bold text-gray-900 mb-2">Key Responsibilities:</h4>
-                  <ul className="space-y-1">
-                    {job.responsibilities.map((resp, idx) => (
-                      <li key={idx} className="text-gray-600 text-sm flex items-start gap-2">
-                        <span className="text-blue-600 mt-1">•</span>
-                        <span>{resp}</span>
+                <div className="mb-5">
+                  <h4 className="font-semibold text-gray-900 mb-2">Key Responsibilities</h4>
+                  <ul className="space-y-1.5">
+                    {job.responsibilities.map((item) => (
+                      <li key={item} className="text-sm text-gray-600 flex items-start gap-2">
+                        <span className="text-red-600 mt-1">•</span>
+                        <span>{item}</span>
                       </li>
                     ))}
                   </ul>
                 </div>
 
                 <div className="mb-6">
-                  <h4 className="font-bold text-gray-900 mb-2">Requirements:</h4>
-                  <ul className="space-y-1">
-                    {job.requirements.map((req, idx) => (
-                      <li key={idx} className="text-gray-600 text-sm flex items-start gap-2">
-                        <span className="text-blue-600 mt-1">•</span>
-                        <span>{req}</span>
+                  <h4 className="font-semibold text-gray-900 mb-2">Requirements</h4>
+                  <ul className="space-y-1.5">
+                    {job.requirements.map((item) => (
+                      <li key={item} className="text-sm text-gray-600 flex items-start gap-2">
+                        <span className="text-red-600 mt-1">•</span>
+                        <span>{item}</span>
                       </li>
                     ))}
                   </ul>
@@ -301,38 +302,44 @@ export default function CareersPage() {
 
                 <button
                   onClick={() => handleApplyClick(job.title)}
-                  className="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition w-full"
+                  className="w-full rounded-lg bg-red-600 text-white px-6 py-3 font-semibold hover:bg-red-700 transition"
                 >
-                  Apply Now
+                  Apply for {job.title}
                 </button>
-              </div>
+              </article>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Application Form Section */}
       <section id="apply" className="py-16 md:py-20 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-gray-50 rounded-2xl shadow-xl p-8 md:p-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Apply for a Position</h2>
+          <article className="rounded-2xl border border-gray-200 bg-white p-8 md:p-10 shadow-sm">
+            <h2 className="text-3xl font-bold text-gray-900 mb-2">Apply for a Position</h2>
             <p className="text-gray-600 mb-8">
-              Fill out the form below or send your resume directly to{' '}
-              <a href="mailto:hr@milebridge.in" className="text-blue-600 font-semibold hover:underline">
+              Complete the form below or email your resume to{' '}
+              <a href="mailto:hr@milebridge.in" className="text-red-600 font-semibold hover:text-red-700">
                 hr@milebridge.in
               </a>
+              .
             </p>
 
-            {submitMessage && (
-              <div className="mb-6 p-4 bg-green-50 border border-green-200 text-green-800 rounded-lg">
+            {submitMessage ? (
+              <div
+                className={`mb-6 rounded-lg border p-4 text-sm ${
+                  submitStatus === 'success'
+                    ? 'bg-green-50 border-green-200 text-green-800'
+                    : 'bg-red-50 border-red-200 text-red-700'
+                }`}
+              >
                 {submitMessage}
               </div>
-            )}
+            ) : null}
 
-            <form onSubmit={handleSubmit}>
-              <div className="grid md:grid-cols-2 gap-6 mb-6">
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div className="grid md:grid-cols-2 gap-6">
                 <div>
-                  <label htmlFor="fullName" className="block text-gray-700 font-semibold mb-2">
+                  <label htmlFor="fullName" className="block text-sm font-semibold text-gray-700 mb-2">
                     Full Name *
                   </label>
                   <input
@@ -342,12 +349,12 @@ export default function CareersPage() {
                     value={formData.fullName}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full rounded-lg border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent"
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="email" className="block text-gray-700 font-semibold mb-2">
+                  <label htmlFor="email" className="block text-sm font-semibold text-gray-700 mb-2">
                     Email *
                   </label>
                   <input
@@ -357,14 +364,14 @@ export default function CareersPage() {
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full rounded-lg border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent"
                   />
                 </div>
               </div>
 
-              <div className="grid md:grid-cols-2 gap-6 mb-6">
+              <div className="grid md:grid-cols-2 gap-6">
                 <div>
-                  <label htmlFor="phone" className="block text-gray-700 font-semibold mb-2">
+                  <label htmlFor="phone" className="block text-sm font-semibold text-gray-700 mb-2">
                     Phone *
                   </label>
                   <input
@@ -374,12 +381,12 @@ export default function CareersPage() {
                     value={formData.phone}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full rounded-lg border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent"
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="position" className="block text-gray-700 font-semibold mb-2">
+                  <label htmlFor="position" className="block text-sm font-semibold text-gray-700 mb-2">
                     Position Applying For *
                   </label>
                   <select
@@ -388,21 +395,21 @@ export default function CareersPage() {
                     value={formData.position}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full rounded-lg border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent"
                   >
-                    <option value="">Select position</option>
-                    {jobListings.map((job, idx) => (
-                      <option key={idx} value={job.title.toLowerCase().replace(/\s+/g, '-')}>
+                    <option value="">Select a position</option>
+                    {jobListings.map((job) => (
+                      <option key={job.title} value={job.title}>
                         {job.title}
                       </option>
                     ))}
-                    <option value="other">Other</option>
+                    <option value="Other">Other</option>
                   </select>
                 </div>
               </div>
 
-              <div className="mb-6">
-                <label htmlFor="experience" className="block text-gray-700 font-semibold mb-2">
+              <div>
+                <label htmlFor="experience" className="block text-sm font-semibold text-gray-700 mb-2">
                   Years of Experience *
                 </label>
                 <input
@@ -412,13 +419,13 @@ export default function CareersPage() {
                   value={formData.experience}
                   onChange={handleChange}
                   required
-                  placeholder="e.g., 3 years"
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  placeholder="Example: 3 years"
+                  className="w-full rounded-lg border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent"
                 />
               </div>
 
-              <div className="mb-6">
-                <label htmlFor="coverLetter" className="block text-gray-700 font-semibold mb-2">
+              <div>
+                <label htmlFor="coverLetter" className="block text-sm font-semibold text-gray-700 mb-2">
                   Cover Letter
                 </label>
                 <textarea
@@ -427,36 +434,37 @@ export default function CareersPage() {
                   value={formData.coverLetter}
                   onChange={handleChange}
                   rows={6}
-                  placeholder="Tell us why you'd be a great fit..."
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
+                  placeholder="Tell us why you are a strong fit for this role."
+                  className="w-full rounded-lg border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent resize-none"
                 ></textarea>
               </div>
 
-              <div className="mb-6">
-                <label htmlFor="resume" className="block text-gray-700 font-semibold mb-2">
+              <div>
+                <label htmlFor="resume" className="block text-sm font-semibold text-gray-700 mb-2">
                   Upload Resume *
                 </label>
                 <input
+                  key={resumeInputKey}
                   type="file"
                   id="resume"
                   name="resume"
                   onChange={handleFileChange}
                   required
                   accept=".pdf,.doc,.docx"
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
+                  className="w-full rounded-lg border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent file:mr-4 file:rounded-md file:border-0 file:bg-red-50 file:px-4 file:py-2 file:text-sm file:font-semibold file:text-red-700 hover:file:bg-red-100"
                 />
-                <p className="text-sm text-gray-500 mt-2">Accepted formats: PDF, DOC, DOCX (Max 5MB)</p>
+                <p className="mt-2 text-sm text-gray-500">Accepted formats: PDF, DOC, DOCX. Maximum size: 5MB.</p>
               </div>
 
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full bg-blue-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-blue-700 transition disabled:bg-gray-400 disabled:cursor-not-allowed"
+                className="w-full rounded-lg bg-red-600 text-white px-6 py-3 font-semibold hover:bg-red-700 transition disabled:bg-gray-400 disabled:cursor-not-allowed"
               >
                 {isSubmitting ? 'Submitting...' : 'Submit Application'}
               </button>
             </form>
-          </div>
+          </article>
         </div>
       </section>
     </div>

@@ -1,52 +1,49 @@
-// app/leadership/page.tsx
-import { Metadata } from 'next';
-import { leadership } from '@/lib/team';
+import type { Metadata } from 'next'
+import PageHero from '@/components/PageHero'
+import { leadership } from '@/lib/team'
 
 export const metadata: Metadata = {
   title: 'Leadership Team | MileBridge Logistics',
-  description: 'Meet the leadership team driving innovation and excellence at MileBridge Logistics.',
-};
+  description: 'Meet the leadership team driving execution excellence at MileBridge Logistics.',
+}
 
 export default function LeadershipPage() {
   return (
-    <>
-      {/* Hero */}
-      <section className="py-20 bg-gradient-to-br from-blue-900 to-blue-800 text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">Our Leadership Team</h1>
-          <p className="text-xl max-w-3xl mx-auto">
-            Experienced leaders driving innovation and excellence in logistics
-          </p>
-        </div>
-      </section>
+    <div className="min-h-screen">
+      <PageHero
+        eyebrow="LEADERSHIP"
+        title="Leadership Team"
+        description="Experienced operators and managers focused on reliable service delivery, disciplined execution, and long-term client partnerships."
+      />
 
-      {/* Leadership Section */}
-      <section className="py-16 bg-white">
+      <section className="py-16 md:py-20 bg-gradient-to-b from-white to-red-50/60">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {leadership.map((leader, index) => (
-              <div key={index} className="text-center bg-gray-50 p-8 rounded-lg">
-                <div className="w-32 h-32 mx-auto mb-4 bg-gradient-to-br from-blue-900 to-red-600 rounded-full flex items-center justify-center text-white text-4xl font-bold">
+            {leadership.map((leader) => (
+              <article key={leader.name} className="bg-white border border-gray-200 rounded-2xl p-8 shadow-sm hover:shadow-lg transition">
+                <div className="w-24 h-24 rounded-full bg-gradient-to-br from-gray-900 to-red-600 text-white text-3xl font-bold flex items-center justify-center mb-5">
                   {leader.name.charAt(0)}
                 </div>
-                <h3 className="font-bold text-xl text-gray-900 mb-2">{leader.name}</h3>
-                <p className="text-red-600 font-semibold mb-3">{leader.role}</p>
-                <p className="text-sm text-gray-600 mb-4">{leader.bio}</p>
-                {leader.linkedin && (
-                  <a 
-                    href={leader.linkedin} 
-                    target="_blank" 
+                <h2 className="text-2xl font-bold text-gray-900 mb-1">{leader.name}</h2>
+                <p className="text-red-600 font-semibold mb-4">{leader.role}</p>
+                <p className="text-gray-600 leading-relaxed">{leader.bio}</p>
+
+                {leader.linkedin ? (
+                  <a
+                    href={leader.linkedin}
+                    target="_blank"
                     rel="noopener noreferrer"
-                    className="text-blue-600 text-sm hover:underline inline-flex items-center gap-2"
+                    className="inline-flex items-center gap-2 mt-5 text-red-600 font-semibold hover:text-red-700"
                   >
-                    <span>Connect on LinkedIn →</span>
+                    Connect on LinkedIn
+                    <span aria-hidden="true">→</span>
                   </a>
-                )}
-              </div>
+                ) : null}
+              </article>
             ))}
           </div>
         </div>
       </section>
-    </>
-  );
+    </div>
+  )
 }

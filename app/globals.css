@@ -1,44 +1,61 @@
 @import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-/* Enable Smooth Scrolling for the whole site */
+:root {
+  --brand-red: #e5223e;
+  --brand-dark: #111827;
+  --text-primary: #1f2937;
+  --text-strong: #111827;
+  --font-body: "Avenir Next", "Manrope", "Segoe UI", sans-serif;
+  --font-display: "Poppins", "Avenir Next", "Manrope", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
 html {
   scroll-behavior: smooth;
 }
 
-/* Custom CSS Variables for MileBridge Brand Colors */
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-  --primary-blue: #2563eb;
-  --secondary-blue: #1d4ed8;
-}
-
-/* Base Body Styles */
 body {
-  color: rgb(var(--foreground-rgb));
-  background: white;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
+  min-height: 100%;
+  color: var(--text-primary);
+  line-height: 1.55;
+  overflow-x: hidden;
+  font-family: var(--font-body);
+  text-rendering: optimizeLegibility;
+  background: linear-gradient(180deg, #f7f8fa 0%, #f3f4f6 100%);
 }
 
-/* Utility to prevent horizontal overflow on mobile */
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  letter-spacing: -0.015em;
+}
+
 main {
   overflow-x: hidden;
   width: 100%;
 }
 
-/* Ensure images and SVGs don't break layout */
 img, svg {
   display: inline-block;
   vertical-align: middle;
 }
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
 
-/* Your existing styles... */
+a, button {
+  transition: color 180ms ease, background-color 180ms ease, border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+}
+
+::selection {
+  color: #fff;
+  background: rgba(37, 99, 235, 0.75);
+}
 
 /* ============================================ */
 /* FIREFOX MOBILE COMPATIBILITY FIXES */
@@ -53,29 +70,6 @@ img, svg {
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
   }
-  
-  /* Replace transparent backgrounds with solid ones */
-  [class*="bg-white/"] {
-    background: rgba(30, 41, 59, 0.95) !important;
-  }
-  
-  /* Ensure all white text is visible */
-  .text-white {
-    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8) !important;
-  }
-}
-/* Mobile Scroll Performance */
-* {
-  -webkit-tap-highlight-color: transparent;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-/* Prevent horizontal scroll on mobile */
-body {
-  overflow-x: hidden;
 }
 
 /* Better touch targets for mobile */
@@ -90,7 +84,7 @@ body {
     font-size: 16px;
     line-height: 1.6;
   }
-  
+
   /* Prevent zoom on input focus (iOS) */
   input, textarea, select {
     font-size: 16px;
@@ -107,4 +101,3 @@ body {
     transition-duration: 0.01ms !important;
   }
 }
-
