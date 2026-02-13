@@ -96,13 +96,17 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+  const iconVersion = '20260213-1'
+
   return (
     <html lang="en">
       <head>
-        <link rel="icon" href="/favicon.ico" sizes="any" />
-        <link rel="icon" href="/icon.svg" type="image/svg+xml" />
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-        <link rel="manifest" href="/manifest.json" />
+        <link rel="icon" href={`/favicon.ico?v=${iconVersion}`} sizes="any" />
+        <link rel="shortcut icon" href={`/favicon.ico?v=${iconVersion}`} />
+        <link rel="icon" type="image/png" sizes="32x32" href={`/favicon-32x32.png?v=${iconVersion}`} />
+        <link rel="icon" type="image/png" sizes="192x192" href={`/icon-192.png?v=${iconVersion}`} />
+        <link rel="apple-touch-icon" href={`/apple-touch-icon.png?v=${iconVersion}`} />
+        <link rel="manifest" href={`/manifest.json?v=${iconVersion}`} />
       </head>
       
       <body className="antialiased">
