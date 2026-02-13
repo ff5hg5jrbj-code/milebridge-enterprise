@@ -17,7 +17,7 @@ export function FadeIn({ children, delay = 0 }: { children: React.ReactNode; del
   return (
     <motion.div
       ref={ref}
-      initial="hidden"
+      initial="visible"
       animate={controls}
       variants={{
         hidden: { opacity: 0, y: 50 },
@@ -45,7 +45,7 @@ export function SlideInLeft({ children, delay = 0 }: { children: React.ReactNode
   return (
     <motion.div
       ref={ref}
-      initial="hidden"
+      initial="visible"
       animate={controls}
       variants={{
         hidden: { opacity: 0, x: -100 },
@@ -73,7 +73,7 @@ export function SlideInRight({ children, delay = 0 }: { children: React.ReactNod
   return (
     <motion.div
       ref={ref}
-      initial="hidden"
+      initial="visible"
       animate={controls}
       variants={{
         hidden: { opacity: 0, x: 100 },
@@ -101,7 +101,7 @@ export function ScaleIn({ children, delay = 0 }: { children: React.ReactNode; de
   return (
     <motion.div
       ref={ref}
-      initial="hidden"
+      initial="visible"
       animate={controls}
       variants={{
         hidden: { opacity: 0, scale: 0.8 },
